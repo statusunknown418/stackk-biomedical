@@ -82,6 +82,7 @@ export default tseslint.config(
           message: "Use `import { z } from 'zod/v4'` instead to ensure v4.",
         },
       ],
+      "no-console": "warn",
     },
   },
   {

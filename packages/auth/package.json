@@ -1,7 +1,8 @@
 {
-  "name": "@acme/auth",
+  "name": "@stackk/auth",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -9,17 +10,17 @@
     "./client": "./src/client.ts",
     "./env": "./env.ts"
   },
-  "license": "MIT",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
     "generate": "dotenv -e ../../.env -- pnpx @better-auth/cli generate --output ../db/src/auth-schema.ts",
+    "lint": "eslint",
     "typecheck": "tsc --noEmit"
   },
+  "prettier": "@stackk/prettier-config",
   "dependencies": {
-    "@acme/db": "workspace:*",
     "@better-auth/expo": "1.2.9",
+    "@stackk/db": "workspace:*",
     "@t3-oss/env-nextjs": "^0.13.6",
     "better-auth": "1.2.9",
     "next": "^15.3.3",
@@ -28,13 +29,12 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@stackk/eslint-config": "workspace:*",
+    "@stackk/prettier-config": "workspace:*",
+    "@stackk/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
-  },
-  "prettier": "@acme/prettier-config"
+  }
 }

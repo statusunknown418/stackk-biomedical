@@ -1,4 +1,4 @@
-import baseConfig from "@acme/eslint-config/base";
+import baseConfig from "@stackk/eslint-config/base";
 
 /** @type {import('typescript-eslint').Config} */
 export default [

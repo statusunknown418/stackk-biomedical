@@ -1,37 +1,37 @@
 {
-  "name": "create-t3-turbo",
+  "name": "stackk-biomedical",
   "private": true,
-  "engines": {
-    "node": ">=22.14.0",
-    "pnpm": ">=9.6.0"
-  },
-  "packageManager": "pnpm@10.11.1",
   "scripts": {
+    "android": "expo run:android",
+    "auth:generate": "pnpm -F @stackk/auth generate",
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
-    "auth:generate": "pnpm -F @acme/auth generate",
-    "db:push": "turbo -F @acme/db push",
-    "db:studio": "turbo -F @acme/db studio",
+    "db:push": "turbo -F @stackk/db push",
+    "db:studio": "turbo -F @stackk/db studio",
     "dev": "turbo watch dev --continue",
-    "dev:next": "turbo watch dev -F @acme/nextjs...",
+    "dev:next": "turbo watch dev -F @stackk/nextjs...",
     "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
     "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "postinstall": "pnpm lint:ws",
+    "ios": "expo run:ios",
     "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
     "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
     "lint:ws": "pnpm dlx sherif@latest",
-    "postinstall": "pnpm lint:ws",
     "typecheck": "turbo run typecheck",
-    "ui-add": "turbo run ui-add",
-    "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ui-add": "turbo run ui-add"
   },
+  "prettier": "@stackk/prettier-config",
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
+    "@stackk/prettier-config": "workspace:*",
     "@turbo/gen": "^2.5.4",
     "prettier": "catalog:",
     "turbo": "^2.5.4",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "packageManager": "pnpm@10.11.1",
+  "engines": {
+    "node": ">=22.14.0",
+    "pnpm": ">=9.6.0"
+  }
 }
