@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import { cn } from "@stackk/ui";
 import { ThemeProvider, ThemeToggle } from "@stackk/ui/theme";
 import { Toaster } from "@stackk/ui/toast";

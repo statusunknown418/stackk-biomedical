@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { headers } from "next/headers";
+
 import { initAuth } from "@stackk/auth";
 
 import { env } from "~/env";
