@@ -14,6 +14,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@stackk/api": "workspace:*",
     "@stackk/auth": "workspace:*",
     "@stackk/db": "workspace:*",
@@ -25,6 +26,7 @@
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
     "next": "^15.3.3",
+    "pure-rand": "^7.0.1",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "superjson": "2.2.2",

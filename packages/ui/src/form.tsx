@@ -10,11 +10,7 @@ import type { ZodType } from "zod/v4";
 import * as React from "react";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { Slot } from "radix-ui";
-import {
-  useForm as __useForm,
-  Controller,
-  useFormContext,
-} from "react-hook-form";
+import { useForm as __useForm, Controller, useFormContext } from "react-hook-form";
 
 import { cn } from "@stackk/ui";
 
@@ -42,9 +38,7 @@ interface FormFieldContextValue<
   name: TName;
 }
 
-const FormFieldContext = React.createContext<FormFieldContextValue | null>(
-  null,
-);
+const FormFieldContext = React.createContext<FormFieldContextValue | null>(null);
 
 export function FormField<
   TFieldValues extends FieldValues = FieldValues,
@@ -97,10 +91,7 @@ export function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-export function FormLabel({
-  className,
-  ...props
-}: React.ComponentProps<typeof Label>) {
+export function FormLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
   const { error, formItemId } = useFormField();
 
   return (
@@ -112,19 +103,14 @@ export function FormLabel({
   );
 }
 
-export function FormControl({
-  ...props
-}: React.ComponentProps<typeof Slot.Slot>) {
-  const { error, formItemId, formDescriptionId, formMessageId } =
-    useFormField();
+export function FormControl({ ...props }: React.ComponentProps<typeof Slot.Slot>) {
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot.Slot
       id={formItemId}
       aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
+        !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
       {...props}
@@ -132,10 +118,7 @@ export function FormControl({
   );
 }
 
-export function FormDescription({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+export function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   const { formDescriptionId } = useFormField();
 
   return (

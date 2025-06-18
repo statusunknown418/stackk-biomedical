@@ -4,20 +4,22 @@ import type { UseEmblaCarouselType } from "embla-carousel-react";
 import * as React from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel from "embla-carousel-react";
-import { Button } from "src//button";
-import { cn } from "src/lib/utils";
+
+import { Button } from "@stackk/ui/button";
+
+import { cn } from ".";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
-type CarouselProps = {
+interface CarouselProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
-};
+}
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
@@ -45,15 +47,7 @@ const Carousel = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
 >(
   (
-    {
-      orientation = "horizontal",
-      opts,
-      setApi,
-      plugins,
-      className,
-      children,
-      ...props
-    },
+    { orientation = "horizontal", opts, setApi, plugins, className, children, ...props },
     ref,
   ) => {
     const [carouselRef, api] = useEmblaCarousel(
@@ -114,7 +108,7 @@ const Carousel = React.forwardRef<
       api.on("select", onSelect);
 
       return () => {
-        api?.off("select", onSelect);
+        api.off("select", onSelect);
       };
     }, [api, onSelect]);
 
@@ -124,8 +118,8 @@ const Carousel = React.forwardRef<
           carouselRef,
           api: api,
           opts,
-          orientation:
-            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+          orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
           canScrollPrev,

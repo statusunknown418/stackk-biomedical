@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { MinusIcon } from "@radix-ui/react-icons";
-import { OTPInput, OTPInputContext } from "src//input-otp";
-import { cn } from "src/lib/utils";
+import { OTPInput, OTPInputContext } from "input-otp";
+
+import { cn } from ".";
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
@@ -34,6 +35,11 @@ const InputOTPSlot = React.forwardRef<
   React.ComponentPropsWithoutRef<"div"> & { index: number }
 >(({ index, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext);
+
+  if (!inputOTPContext.slots[index]) {
+    throw new Error("useInputOTP must be used within a <InputOTP />");
+  }
+
   const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
 
   return (

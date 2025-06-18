@@ -10,8 +10,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        primary: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
@@ -35,7 +34,7 @@ export const buttonVariants = cva(
   },
 );
 
-interface ButtonProps
+export interface ButtonProps
   extends React.ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
@@ -49,10 +48,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot.Slot : "button";
-  return (
-    <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  );
+  return <Comp className={cn(buttonVariants({ variant, size, className }))} {...props} />;
 }
+
+Button.displayName = "Button";

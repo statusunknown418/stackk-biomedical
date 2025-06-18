@@ -26,10 +26,7 @@ import { db } from "@stackk/db/client";
  * @see https://trpc.io/docs/server/context
  */
 
-export const createTRPCContext = async (opts: {
-  headers: Headers;
-  auth: Auth;
-}) => {
+export const createTRPCContext = async (opts: { headers: Headers; auth: Auth }) => {
   const authApi = opts.auth.api;
   const session = await authApi.getSession({
     headers: opts.headers,

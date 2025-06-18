@@ -1,7 +1,8 @@
 import * as React from "react";
 import { ChevronRightIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Slot } from "@radix-ui/react-slot";
-import { cn } from "src/lib/utils";
+
+import { cn } from ".";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
@@ -87,10 +88,7 @@ const BreadcrumbSeparator = ({
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
-const BreadcrumbEllipsis = ({
-  className,
-  ...props
-}: React.ComponentProps<"span">) => (
+const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
     role="presentation"
     aria-hidden="true"
