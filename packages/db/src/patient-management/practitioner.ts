@@ -28,15 +28,23 @@ export const practitioners = sqliteTable(
     name: t.text("name").notNull(),
     gender: t.text("gender"),
     birthDate: t.integer("birth_date", { mode: "timestamp" }),
-    contactPoint: t.blob("contact_point", { mode: "json" }).$type<ContactPoint[]>(),
-    address: t.blob("address", { mode: "json" }).$type<Address[]>(),
+    contactPoint: t.text("contact_point", { mode: "json" }).$type<ContactPoint[]>(),
+    address: t.text("address", { mode: "json" }).$type<Address[]>(),
     communication: t
-      .blob("communication", { mode: "json" })
+      .text("communication", { mode: "json" })
       .$type<CommunicationPreference[]>(),
     qualification: t
-      .blob("qualification", { mode: "json" })
+      .text("qualification", { mode: "json" })
       .$type<PractitionerQualification[]>(),
-    meta: t.blob("meta", { mode: "json" }).$type<Meta>().notNull(),
+    meta: t.text("meta", { mode: "json" }).$type<Meta>(),
+    createdAt: t
+      .integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: t
+      .integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
   }),
   (t) => [index("practitioner_user_idx").on(t.userId)],
 );

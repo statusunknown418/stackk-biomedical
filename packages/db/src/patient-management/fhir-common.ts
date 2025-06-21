@@ -1,9 +1,12 @@
-import { blob } from "drizzle-orm/sqlite-core";
-
 // FHIR common types
 export interface Period {
   start?: Date;
   end?: Date;
+}
+
+export interface Performer {
+  reference: string;
+  display?: string;
 }
 
 export interface EncodableConcept {
@@ -62,8 +65,3 @@ export interface EncounterLocation {
 
 export const activeStatus = ["active", "completed"] as const;
 export type ActiveStatus = (typeof activeStatus)[number];
-
-// Common fields for FHIR resources
-export const baseFields = {
-  meta: blob("meta", { mode: "json" }).$type<Meta>().notNull(),
-};

@@ -1,8 +1,7 @@
 import { createId } from "@paralleldrive/cuid2";
-import { blob, index, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-import type { DiagnosisComponent, EncounterLocation, Period } from "./fhir-common";
-import { baseFields } from "./fhir-common";
+import type { DiagnosisComponent, EncounterLocation, Meta, Period } from "./fhir-common";
 import { patients } from "./patient";
 import { practitioners } from "./practitioner";
 
@@ -36,10 +35,16 @@ export const encounters = sqliteTable(
     type: text("type").notNull(),
     serviceType: text("service_type"),
     priority: text("priority"),
-    period: blob("period", { mode: "json" }).$type<Period>().notNull(),
-    diagnosis: blob("diagnosis", { mode: "json" }).$type<DiagnosisComponent[]>(),
-    location: blob("location", { mode: "json" }).$type<EncounterLocation[]>(),
-    ...baseFields,
+    period: text("period", { mode: "json" }).$type<Period>().notNull(),
+    diagnosis: text("diagnosis", { mode: "json" }).$type<DiagnosisComponent[]>(),
+    location: text("location", { mode: "json" }).$type<EncounterLocation[]>(),
+    meta: text("meta", { mode: "json" }).$type<Meta>(),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
   },
   (table) => [
     index("encounter_patient_idx").on(table.patientId),

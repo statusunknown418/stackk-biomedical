@@ -5,10 +5,10 @@ import type {
   Address,
   CommunicationPreference,
   ContactPoint,
+  Meta,
   Period,
 } from "./fhir-common";
 import { organizations, users } from "../authentication";
-import { baseFields } from "./fhir-common";
 import { practitioners } from "./practitioner";
 
 export interface PatientIdentifier {
@@ -30,29 +30,33 @@ export const patients = sqliteTable(
       .text("id")
       .primaryKey()
       .$defaultFn(() => `patient_${createId()}`),
-    identifier: t
-      .blob("identifier", { mode: "json" })
-      .$type<PatientIdentifier[]>()
-      .notNull(),
+    identifier: t.text().unique(),
     organizationId: t.text("organization_id").references(() => organizations.id),
     userId: t.text("user_id").references(() => users.id),
-    name: t.blob("name", { mode: "json" }).$type<HumanName[]>().notNull(),
+    name: t.text("name", { mode: "json" }).$type<HumanName[]>().notNull(),
     gender: t.text("gender").$type<"male" | "female" | "other" | "unknown">(),
     birthDate: t.integer("birth_date", { mode: "timestamp" }),
     deceased: t.integer("deceased", { mode: "boolean" }).default(false),
-    contactPoint: t.blob("contact_point", { mode: "json" }).$type<ContactPoint[]>(),
-    address: t.blob("address", { mode: "json" }).$type<Address[]>(),
+    contactPoint: t.text("contact_point", { mode: "json" }).$type<ContactPoint[]>(),
+    address: t.text("address", { mode: "json" }).$type<Address[]>(),
     maritalStatus: t.text("marital_status"),
     communication: t
-      .blob("communication", { mode: "json" })
+      .text("communication", { mode: "json" })
       .$type<CommunicationPreference[]>(),
     generalPractitionerId: t
       .text("general_practitioner_id")
       .references(() => practitioners.id),
-    ...baseFields,
+    meta: t.text("meta", { mode: "json" }).$type<Meta>(),
+    createdAt: t
+      .integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: t
+      .integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
   }),
   (t) => [
-    index("patient_identifier_idx").on(t.identifier),
     index("patient_name_idx").on(t.name),
     index("patient_org_idx").on(t.organizationId),
     index("patient_user_idx").on(t.userId),

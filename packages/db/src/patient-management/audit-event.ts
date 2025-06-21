@@ -44,7 +44,7 @@ export const auditEvents = sqliteTable(
     agent: t.text("agent", { mode: "json" }).$type<AuditEventAgent[]>().notNull(),
     source: t.text("source", { mode: "json" }).$type<AuditEventSource>().notNull(),
     entity: t.text("entity", { mode: "json" }).$type<AuditEventEntity[]>(),
-    meta: t.text("meta", { mode: "json" }).$type<Meta>().notNull(),
+    meta: t.text("meta", { mode: "json" }).$type<Meta>(),
   }),
   (t) => [
     index("audit_recorded_idx").on(t.recordedAt),

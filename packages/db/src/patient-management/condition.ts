@@ -1,9 +1,8 @@
 import { createId } from "@paralleldrive/cuid2";
-import { index, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-import type { EncodableConcept } from "./fhir-common";
+import type { EncodableConcept, Meta } from "./fhir-common";
 import { encounters } from "./encounter";
-import { baseFields } from "./fhir-common";
 import { patients } from "./patient";
 
 export interface ConditionSeverity {
@@ -28,7 +27,13 @@ export const conditions = sqliteTable(
     severity: text("severity", { mode: "json" }).$type<ConditionSeverity>(),
     evidence: text("evidence", { mode: "json" }).$type<ConditionEvidence[]>(),
     code: text("code", { mode: "json" }).$type<EncodableConcept>().notNull(),
-    ...baseFields,
+    meta: text("meta", { mode: "json" }).$type<Meta>(),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .$defaultFn(() => new Date())
+      .notNull(),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .$defaultFn(() => new Date())
+      .notNull(),
   },
   (table) => [
     index("condition_code_idx").on(table.code),

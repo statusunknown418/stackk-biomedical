@@ -1,8 +1,7 @@
 import { createId } from "@paralleldrive/cuid2";
-import { blob, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-import type { EncodableConcept } from "./fhir-common";
-import { baseFields } from "./fhir-common";
+import type { EncodableConcept, Meta } from "./fhir-common";
 import { patients } from "./patient";
 
 export interface AllergyReaction {
@@ -17,11 +16,17 @@ export const allergyIntolerance = sqliteTable("allergy_intolerance", {
   patientId: text("patient_id")
     .notNull()
     .references(() => patients.id),
-  clinicalStatus: blob("clinical_status", { mode: "json" }).$type<EncodableConcept>(),
-  verificationStatus: blob("verification_status", {
+  clinicalStatus: text("clinical_status", { mode: "json" }).$type<EncodableConcept>(),
+  verificationStatus: text("verification_status", {
     mode: "json",
   }).$type<EncodableConcept>(),
-  code: blob("code", { mode: "json" }).$type<EncodableConcept>().notNull(),
-  reaction: blob("reaction", { mode: "json" }).$type<AllergyReaction[]>(),
-  ...baseFields,
+  code: text("code", { mode: "json" }).$type<EncodableConcept>().notNull(),
+  reaction: text("reaction", { mode: "json" }).$type<AllergyReaction[]>(),
+  meta: text("meta", { mode: "json" }).$type<Meta>(),
+  createdAt: integer("created_at")
+    .notNull()
+    .$defaultFn(() => Date.now()),
+  updatedAt: integer("updated_at")
+    .notNull()
+    .$defaultFn(() => Date.now()),
 });
