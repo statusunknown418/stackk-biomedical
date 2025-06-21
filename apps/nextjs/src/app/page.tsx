@@ -1,4 +1,8 @@
-import { HydrateClient } from "~/trpc/server";
+import { Suspense } from "react";
+
+import { Button } from "@stackk/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@stackk/ui/card";
+
 import { AuthShowcase } from "./_components/auth-showcase";
 
 // import { CreatePostForm, PostCardSkeleton, PostList } from "./_components/posts";
@@ -7,15 +11,19 @@ export default function HomePage() {
   // prefetch(trpc.post.all.queryOptions());
 
   return (
-    <HydrateClient>
-      <main className="container h-screen py-16">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-primary">T3</span> Turbo
-          </h1>
-          <AuthShowcase />
+    <main className="container h-screen py-16">
+      <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+          Create <span className="text-primary">T3</span> Turbo
+        </h1>
 
-          {/* 
+        <Suspense>
+          <AuthShowcase />
+        </Suspense>
+
+        <Button>Something</Button>
+
+        {/* 
           <CreatePostForm />
           <div className="w-full max-w-2xl overflow-y-scroll">
             <Suspense
@@ -30,8 +38,20 @@ export default function HomePage() {
               <PostList />
             </Suspense>
           </div> */}
-        </div>
-      </main>
-    </HydrateClient>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Another thing</CardTitle>
+          </CardHeader>
+
+          <CardContent>Something here</CardContent>
+
+          <CardFooter>
+            <Button variant="outline">Click me</Button>
+            <Button variant="secondary">Click me</Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </main>
   );
 }

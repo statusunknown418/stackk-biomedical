@@ -18,6 +18,6 @@ const productionUrl = `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`;
 
 export const auth = initAuth({ baseUrl, productionUrl });
 
-export const getSession = cache(async () =>
-  auth.api.getSession({ headers: await headers() }),
-);
+export const getSession = cache(async () => {
+  return auth.api.getSession({ headers: await headers() });
+});
