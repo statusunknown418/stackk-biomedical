@@ -3,6 +3,7 @@
 Something cool here
 
 ## Setup
+
 You'll need these keys
 
 ```env
@@ -13,14 +14,16 @@ You'll need these keys
 # If you are cloning this repo, create a copy of this file named `.env` and populate it with your secrets.
 
 # The database URL is used to connect to your Supabase database.
-POSTGRES_URL="postgres://postgres.[USERNAME]:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?workaround=supabase-pooler.vercel"
+TURSO_AUTH_TOKEN="some-auth-token"
+# The database URL is used to connect to your Supabase database.
+TURSO_DATABASE_URL="https://your-database-url.turso.io"
 
 
 # You can generate the secret via 'openssl rand -base64 32' on Unix
 # @see https://www.better-auth.com/docs/installation
 AUTH_SECRET='supersecret'
 
-# Preconfigured Discord OAuth provider, works out-of-the-box
+# Pre-configured Discord OAuth provider, works out-of-the-box
 # @see https://www.better-auth.com/docs/authentication/discord
 AUTH_DISCORD_ID=''
 AUTH_DISCORD_SECRET=''

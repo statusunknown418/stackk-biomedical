@@ -74,6 +74,7 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
     },
     logger: {
       disabled: env.NODE_ENV === "development",
+      level: "debug",
     },
     trustedOrigins: ["expo://"],
   } satisfies BetterAuthOptions;

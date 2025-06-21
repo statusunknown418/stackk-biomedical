@@ -11,7 +11,7 @@
   },
   "aliases": {
     "utils": "@stackk/ui",
-    "components": "src/",
-    "ui": "src/"
+    "components": "./src/",
+    "ui": "./src/"
   }
 }
