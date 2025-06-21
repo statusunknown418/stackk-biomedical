@@ -1,14 +1,20 @@
 import type { Config } from "drizzle-kit";
 
-if (!process.env.POSTGRES_URL) {
-  throw new Error("Missing POSTGRES_URL");
+if (!process.env.TURSO_CONNECTION_URL) {
+  throw new Error("Missing TURSO_URL");
 }
 
-const nonPoolingUrl = process.env.POSTGRES_URL.replace(":6543", ":5432");
+if (!process.env.TURSO_AUTH_TOKEN) {
+  throw new Error("Missing TURSO_AUTH_TOKEN");
+}
 
 export default {
   schema: "./src/schema.ts",
-  dialect: "postgresql",
-  dbCredentials: { url: nonPoolingUrl },
+  dialect: "turso",
   casing: "snake_case",
+  breakpoints: true,
+  dbCredentials: {
+    url: process.env.TURSO_CONNECTION_URL,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+  },
 } satisfies Config;
