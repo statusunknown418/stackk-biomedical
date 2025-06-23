@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
 
-import { users } from "../authentication";
+import { teams, users } from "../authentication";
 import { equipment } from "./equipment";
 import { equipmentLifeSheets } from "./equipment-life-sheet";
 import { equipmentTypes } from "./equipment-type";
@@ -10,11 +10,6 @@ import { performanceTest } from "./performance-test";
 import { riskAssessment } from "./risk-assessment";
 import { safetyTest } from "./safety-test";
 import { technicalInventories } from "./technical-inventory";
-import { upss } from "./upss";
-
-export const upssRelations = relations(upss, ({ many }) => ({
-  equipment: many(equipment),
-}));
 
 export const equipmentTypeRelations = relations(equipmentTypes, ({ many }) => ({
   equipment: many(equipment),
@@ -22,9 +17,9 @@ export const equipmentTypeRelations = relations(equipmentTypes, ({ many }) => ({
 }));
 
 export const equipmentRelations = relations(equipment, ({ one, many }) => ({
-  upss: one(upss, {
+  upss: one(teams, {
     fields: [equipment.upssId],
-    references: [upss.id],
+    references: [teams.id],
   }),
   equipmentType: one(equipmentTypes, {
     fields: [equipment.equipmentTypeId],

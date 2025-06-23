@@ -8,7 +8,7 @@ import type {
   Meta,
   Period,
 } from "./fhir-common";
-import { users } from "../authentication";
+import { members } from "../authentication";
 
 export interface PractitionerQualification {
   code: string;
@@ -24,7 +24,10 @@ export const practitioners = sqliteTable(
       .primaryKey()
       .$defaultFn(() => `practitioner_${createId()}`),
     identifier: t.text("identifier").notNull(),
-    userId: t.text("user_id").references(() => users.id),
+    memberId: t.text("user_id").references(() => members.userId),
+    organizationId: t
+      .text("organization_id")
+      .references(() => members.organizationId, { onDelete: "cascade" }),
     name: t.text("name").notNull(),
     gender: t.text("gender"),
     birthDate: t.integer("birth_date", { mode: "timestamp" }),
@@ -46,5 +49,8 @@ export const practitioners = sqliteTable(
       .notNull()
       .$defaultFn(() => new Date()),
   }),
-  (t) => [index("practitioner_user_idx").on(t.userId)],
+  (t) => [
+    index("practitioner_user_idx").on(t.memberId),
+    index("practitioner_org_idx").on(t.organizationId),
+  ],
 );

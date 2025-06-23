@@ -1,5 +1,8 @@
 import { createId } from "@paralleldrive/cuid2";
+import { relations } from "drizzle-orm";
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+import { equipment } from "./inventory-management";
 
 export const users = sqliteTable("users", (t) => ({
   id: t.text().primaryKey(),
@@ -63,7 +66,7 @@ export const verification = sqliteTable(
     createdAt: t.integer({ mode: "timestamp" }),
     updatedAt: t.integer({ mode: "timestamp" }),
   }),
-  (t) => [index("identifier_idx").on(t.identifier)],
+  (t) => [index("verification_identifier_idx").on(t.identifier)],
 );
 
 export const organizations = sqliteTable("organizations", (t) => ({
@@ -99,6 +102,33 @@ export const members = sqliteTable(
   ],
 );
 
+export const teams = sqliteTable(
+  "teams",
+  (t) => ({
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `team_${createId()}`),
+    name: t.text().notNull(),
+    code: t.text().notNull(),
+    description: t.text(),
+    location: t.text(),
+    organizationId: t
+      .text()
+      .notNull()
+      .references(() => organizations.id, { onDelete: "restrict" }),
+    createdAt: t
+      .integer({ mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: t
+      .integer({ mode: "timestamp" })
+      .notNull()
+      .$onUpdateFn(() => new Date()),
+  }),
+  (t) => [index("team_organization_id_idx").on(t.organizationId)],
+);
+
 export const invitations = sqliteTable(
   "invitations",
   {
@@ -118,6 +148,37 @@ export const invitations = sqliteTable(
   },
   (t) => [
     index("organization_id_idx").on(t.organizationId),
-    index("email_idx").on(t.email),
+    index("invite_email_idx").on(t.email),
   ],
 );
+
+export const passKeys = sqliteTable(
+  "passkeys",
+  (t) => ({
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `passkey_${createId()}`),
+    name: t.text("name"),
+    publicKey: t.text("public_key").notNull(),
+    userId: t
+      .text()
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    credentialId: t.text("credential_id").notNull().unique(),
+    counter: t.integer("counter").notNull(),
+    deviceType: t.text(),
+    backedUp: t.integer("backed_up", { mode: "boolean" }).notNull(),
+    transports: t.text("transports").notNull(),
+    createdAt: t
+      .integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    aaguid: t.text("aaguid").notNull(),
+  }),
+  (t) => [index("passkey_user_id_idx").on(t.userId)],
+);
+
+export const teamsRelations = relations(teams, ({ many }) => ({
+  equipments: many(equipment),
+}));

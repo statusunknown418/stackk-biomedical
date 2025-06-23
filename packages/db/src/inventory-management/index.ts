@@ -1,4 +1,3 @@
-export * from "./upss";
 export * from "./equipment-type";
 export * from "./equipment";
 export * from "./technical-inventory";

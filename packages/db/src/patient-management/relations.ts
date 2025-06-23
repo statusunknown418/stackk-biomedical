@@ -14,7 +14,7 @@ export const patientsRelations = relations(patients, ({ one, many }) => ({
   conditions: many(conditions),
   generalPractitioner: many(patientsToPractitioners),
   user: one(users, {
-    fields: [patients.userId],
+    fields: [patients.memberId],
     references: [users.id],
   }),
 }));
@@ -38,7 +38,7 @@ export const practitionersRelations = relations(practitioners, ({ one, many }) =
   observationsPerformed: many(observations),
   patients: many(patientsToPractitioners),
   user: one(users, {
-    fields: [practitioners.userId],
+    fields: [practitioners.memberId],
     references: [users.id],
   }),
 }));

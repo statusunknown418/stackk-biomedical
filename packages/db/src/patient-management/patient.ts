@@ -8,7 +8,7 @@ import type {
   Meta,
   Period,
 } from "./fhir-common";
-import { organizations, users } from "../authentication";
+import { members } from "../authentication";
 import { practitioners } from "./practitioner";
 
 export interface PatientIdentifier {
@@ -30,10 +30,14 @@ export const patients = sqliteTable(
       .text("id")
       .primaryKey()
       .$defaultFn(() => `patient_${createId()}`),
+    /**
+     * MRN (Medical Record Number) or other unique identifier for the patient.
+     */
     identifier: t.text().unique(),
-    organizationId: t.text("organization_id").references(() => organizations.id),
-    userId: t.text("user_id").references(() => users.id),
-    name: t.text("name", { mode: "json" }).$type<HumanName[]>().notNull(),
+    organizationId: t.text("organization_id").references(() => members.organizationId),
+    memberId: t.text("user_id").references(() => members.userId),
+    familyName: t.text("family_name").notNull(),
+    givenName: t.text("given_name").notNull(),
     gender: t.text("gender").$type<"male" | "female" | "other" | "unknown">(),
     birthDate: t.integer("birth_date", { mode: "timestamp" }),
     deceased: t.integer("deceased", { mode: "boolean" }).default(false),
@@ -57,9 +61,9 @@ export const patients = sqliteTable(
       .$defaultFn(() => new Date()),
   }),
   (t) => [
-    index("patient_name_idx").on(t.name),
+    index("patient_name_idx").on(t.familyName, t.givenName),
     index("patient_org_idx").on(t.organizationId),
-    index("patient_user_idx").on(t.userId),
+    index("patient_user_idx").on(t.memberId),
   ],
 );
 
