@@ -3,11 +3,13 @@ import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { oAuthProxy, organization } from "better-auth/plugins";
+import { passkey } from "better-auth/plugins/passkey";
 import { uniformIntDistribution, xoroshiro128plus } from "pure-rand";
 
 import { db } from "@stackk/db/client";
 
 import { authEnv } from "../env";
+import { appAc, appRoles } from "./access-control";
 
 export function initAuth(options: { baseUrl: string; productionUrl: string }) {
   const env = authEnv();
@@ -15,7 +17,14 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
   const config = {
     database: drizzleAdapter(db, {
       provider: "sqlite",
+      usePlural: true,
     }),
+    appName: "Stackk Biomedical",
+    advanced: {
+      database: {
+        generateId: false,
+      },
+    },
     baseURL: options.baseUrl,
     secret: env.AUTH_SECRET,
     session: {
@@ -23,7 +32,7 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         enabled: true,
         maxAge: 60 * 60 * 24 * 30,
       },
-      updateAge: 60 * 60 * 24 * 7,
+      updateAge: 60 * 60 * 24 * 15,
     },
     user: {
       additionalFields: {
@@ -40,13 +49,13 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
           before: async (user) => {
             const baseUsername = user.email.split("@")[0]?.toLowerCase().trim();
             const randDistribution = xoroshiro128plus(777);
-            const [randNumber] = uniformIntDistribution(1, 1000, randDistribution);
+            const [randNumber] = uniformIntDistribution(1, 10_000, randDistribution);
 
             return new Promise((resolve) => {
               resolve({
                 data: {
                   ...user,
-                  username: `${baseUsername}#${randNumber.toString().padStart(3, "0")}`,
+                  username: `${baseUsername}#${randNumber.toString().padStart(4, "0")}`,
                 },
               });
             });
@@ -63,13 +72,23 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         productionURL: options.productionUrl,
       }),
       expo(),
-      organization(),
+      passkey(),
+      organization({
+        ac: appAc,
+        roles: appRoles,
+        teams: {
+          enabled: true,
+          maximumTeams() {
+            return 20;
+          },
+        },
+      }),
     ],
     socialProviders: {
-      discord: {
-        clientId: env.AUTH_DISCORD_ID,
-        clientSecret: env.AUTH_DISCORD_SECRET,
-        redirectURI: `${options.productionUrl}/api/auth/callback/discord`,
+      google: {
+        clientId: env.AUTH_GOOGLE_ID,
+        clientSecret: env.AUTH_GOOGLE_SECRET,
+        redirectURI: `${options.productionUrl}/api/auth/callback/google`,
       },
     },
     logger: {
