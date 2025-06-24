@@ -4,5 +4,5 @@
       "mode": "auto"
     }
   ],
-  "conventionalCommits.scopes": ["be:routers", "be:db", "fe"]
+  "conventionalCommits.scopes": ["be:routers", "be:db", "fe", "arch"]
 }
