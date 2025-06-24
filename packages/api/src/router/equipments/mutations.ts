@@ -2,13 +2,13 @@ import type { TRPCRouterRecord } from "@trpc/server";
 import { TRPCError } from "@trpc/server";
 
 import { auditEvents } from "@stackk/db/schema";
-import { RequestMoveEquipmentSchema } from "@stackk/validators";
+import { requestMoveEquipmentSchema } from "@stackk/validators";
 
 import { protectedProcedure } from "../../trpc";
 
 export const equipmentMutationsRouter = {
   requestMove: protectedProcedure
-    .input(RequestMoveEquipmentSchema)
+    .input(requestMoveEquipmentSchema)
     .mutation(async ({ ctx, input }) => {
       const t1 = performance.now();
       const member = await ctx.authApi.getActiveMember();
