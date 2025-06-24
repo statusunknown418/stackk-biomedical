@@ -1,10 +1,14 @@
 import { authRouter } from "./router/auth";
-import { postRouter } from "./router/post";
+import { equipmentMutationsRouter } from "./router/equipments/mutations";
+import { equipmentsQueriesRouter } from "./router/equipments/queries";
 import { createTRPCRouter } from "./trpc";
 
 export const appRouter = createTRPCRouter({
   auth: authRouter,
-  post: postRouter,
+  equipments: {
+    queries: equipmentsQueriesRouter,
+    mutations: equipmentMutationsRouter,
+  },
 });
 
 // export type definition of API

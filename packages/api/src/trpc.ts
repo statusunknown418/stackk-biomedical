@@ -10,7 +10,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { z, ZodError } from "zod/v4";
 
-import type { Auth } from "@stackk/auth";
+import type { Auth, Session } from "@stackk/auth";
 import { db } from "@stackk/db/client";
 
 /**
@@ -26,15 +26,28 @@ import { db } from "@stackk/db/client";
  * @see https://trpc.io/docs/server/context
  */
 
-export const createTRPCContext = async (opts: { headers: Headers; auth: Auth }) => {
+export interface ContextOptions {
+  headers: Headers;
+  auth: Auth;
+}
+
+export interface ContextReturnType {
+  authApi: Auth["api"];
+  auth: Session | null;
+  db: typeof db;
+}
+
+export const createTRPCContext = async (
+  opts: ContextOptions,
+): Promise<ContextReturnType> => {
   const authApi = opts.auth.api;
-  const session = await authApi.getSession({
+  const auth = await authApi.getSession({
     headers: opts.headers,
   });
 
   return {
     authApi,
-    session,
+    auth,
     db,
   };
 };
@@ -109,13 +122,16 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
 export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(({ ctx, next }) => {
-    if (!ctx.session?.user) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
+    if (!ctx.auth?.user) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "You need to be authenticated",
+      });
     }
     return next({
       ctx: {
         // infers the `session` as non-nullable
-        session: { ...ctx.session, user: ctx.session.user },
+        auth: { ...ctx.auth, user: ctx.auth.user },
       },
     });
   });
