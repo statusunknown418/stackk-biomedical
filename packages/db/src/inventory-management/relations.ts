@@ -11,9 +11,13 @@ import { riskAssessment } from "./risk-assessment";
 import { safetyTest } from "./safety-test";
 import { technicalInventories } from "./technical-inventory";
 
-export const equipmentTypeRelations = relations(equipmentTypes, ({ many }) => ({
+export const equipmentTypeRelations = relations(equipmentTypes, ({ many, one }) => ({
   equipment: many(equipment),
   maintenanceProtocols: many(maintenanceProtocol),
+  upss: one(teams, {
+    fields: [equipmentTypes.upssId],
+    references: [teams.id],
+  }),
 }));
 
 export const equipmentRelations = relations(equipment, ({ one, many }) => ({

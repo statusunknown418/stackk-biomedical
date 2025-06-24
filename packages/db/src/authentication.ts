@@ -2,7 +2,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { relations } from "drizzle-orm";
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-import { equipment } from "./inventory-management";
+import { equipment, equipmentTypes } from "./inventory-management";
 
 export const users = sqliteTable("users", (t) => ({
   id: t.text().primaryKey(),
@@ -181,4 +181,5 @@ export const passKeys = sqliteTable(
 
 export const teamsRelations = relations(teams, ({ many }) => ({
   equipments: many(equipment),
+  equipmentTypes: many(equipmentTypes),
 }));

@@ -9,6 +9,12 @@ export interface Performer {
   display?: string;
 }
 
+/**
+ * @description A concept that may be defined by a terminology service
+ * @param system - The namespace/organization/space
+ * @param code - The server-side value
+ * @param display - The text to display to the user
+ */
 export interface EncodableConcept {
   system?: string;
   code: string;

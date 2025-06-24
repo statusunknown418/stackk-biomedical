@@ -1,7 +1,5 @@
-import type { z } from "zod/v4";
 import { createId } from "@paralleldrive/cuid2";
 import { index, sqliteTable } from "drizzle-orm/sqlite-core";
-import { createInsertSchema } from "drizzle-zod";
 
 import { equipment } from "./equipment";
 
@@ -34,6 +32,3 @@ export const technicalInventories = sqliteTable(
   }),
   (t) => [index("technical_inventory_equipment_idx").on(t.equipmentId)],
 );
-
-export const TechnicalInventorySchema = createInsertSchema(technicalInventories);
-export type TechnicalInventory = z.infer<typeof TechnicalInventorySchema>;

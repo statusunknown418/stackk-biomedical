@@ -9,3 +9,4 @@ export * from "./observation";
 export * from "./procedure";
 export * from "./condition";
 export * from "./relations";
+export * from "./audit-event";

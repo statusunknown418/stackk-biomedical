@@ -6,6 +6,7 @@ export function dbEnv() {
     server: {
       TURSO_CONNECTION_URL: z.url().min(1),
       TURSO_AUTH_TOKEN: z.string().min(1),
+      NODE_ENV: z.enum(["development", "test", "production"]),
     },
     experimental__runtimeEnv: {},
     skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === "lint",

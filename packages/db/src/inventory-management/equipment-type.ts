@@ -3,7 +3,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { sqliteTable } from "drizzle-orm/sqlite-core";
 import { createInsertSchema } from "drizzle-zod";
 
-import { organizations } from "../authentication";
+import { organizations, teams } from "../authentication";
 
 export interface RiskCriteria {
   riskLevel?: "low" | "medium" | "high";
@@ -17,8 +17,13 @@ export const equipmentTypes = sqliteTable("equipment_type", (t) => ({
     .primaryKey()
     .$defaultFn(() => `eq_type_${createId()}`),
   name: t.text("name").notNull(),
+  logo: t.text("logo"),
   description: t.text("description"),
   riskCriteria: t.text("risk_criteria", { mode: "json" }).$type<RiskCriteria>(),
+  upssId: t
+    .text("upss_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "restrict" }),
   organizationId: t
     .text("organization_id")
     .notNull()
