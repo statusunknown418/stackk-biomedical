@@ -7,23 +7,27 @@ import {
 
 const statement = {
   ...defaultStatements,
-  equipments: ["create", "update", "delete"],
+  equipmentTypes: ["create", "update", "delete"],
+  equipments: ["create", "update", "delete", "parent:update", "parent:validate"],
 } as const;
 
 export const appAc = createAccessControl(statement);
 
 const owner = appAc.newRole({
-  equipments: ["create", "update", "delete"],
+  equipmentTypes: ["create", "update", "delete"],
+  equipments: ["create", "update", "delete", "parent:update", "parent:validate"],
   ...ownerAc.statements,
 });
 
 const admin = appAc.newRole({
-  equipments: ["create", "update"],
+  equipmentTypes: ["create", "update"],
+  equipments: ["create", "update", "parent:update", "parent:validate"],
   ...adminAc.statements,
 });
 
 const member = appAc.newRole({
-  equipments: ["update"],
+  equipmentTypes: ["update"],
+  equipments: ["update", "parent:update"],
   ...adminAc.statements,
 });
 

@@ -28,3 +28,15 @@ AUTH_SECRET='supersecret'
 AUTH_DISCORD_ID=''
 AUTH_DISCORD_SECRET=''
 ```
+
+# App Architecture
+
+## Database
+
+This project uses [Drizzle ORM](https://drizzle.org/) to interact with the database.
+
+### Tables
+
+See all tables @ `packages/db/src/schema.ts`
+
+> Note: we use `teams` as `upss` to avoid duplication as both serve the same purpose
