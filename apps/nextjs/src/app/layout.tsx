@@ -13,7 +13,9 @@ import { env } from "~/env";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    env.VERCEL_ENV === "production" ? (env.VERCEL_URL ?? "") : "http://localhost:3000",
+    env.VERCEL_ENV === "production"
+      ? "https://stackk-biomedical.vercel.app"
+      : "http://localhost:3000",
   ),
   title: "Stackk Biomedical",
   description: "Simple monorepo with shared backend for web & mobile apps",
