@@ -14,7 +14,6 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@paralleldrive/cuid2": "^2.2.2",
     "@stackk/api": "workspace:*",
     "@stackk/auth": "workspace:*",
     "@stackk/db": "workspace:*",
@@ -35,7 +34,6 @@
   "devDependencies": {
     "@stackk/eslint-config": "workspace:*",
     "@stackk/prettier-config": "workspace:*",
-    "@stackk/tailwind-config": "workspace:*",
     "@stackk/tsconfig": "workspace:*",
     "@types/node": "^22.15.29",
     "@types/react": "catalog:react19",
@@ -44,7 +42,6 @@
     "eslint": "catalog:",
     "jiti": "^2.4.2",
     "prettier": "catalog:",
-    "tailwindcss": "catalog:",
     "typescript": "catalog:"
   },
   "prettier": "@stackk/prettier-config"
