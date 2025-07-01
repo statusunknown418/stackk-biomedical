@@ -11,7 +11,7 @@ if (!process.env.TURSO_AUTH_TOKEN) {
 export default {
   schema: "./src/schema.ts",
   dialect: "turso",
-  casing: "snake_case",
+  casing: "camelCase",
   breakpoints: true,
   dbCredentials: {
     url: process.env.TURSO_CONNECTION_URL,

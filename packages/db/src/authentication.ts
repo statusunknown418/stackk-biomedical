@@ -5,7 +5,10 @@ import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { equipment, equipmentTypes } from "./inventory-management";
 
 export const users = sqliteTable("users", (t) => ({
-  id: t.text().primaryKey(),
+  id: t
+    .text()
+    .primaryKey()
+    .$defaultFn(() => `user_${createId()}`),
   name: t.text().notNull(),
   email: t.text().notNull().unique(),
   username: t.text().notNull().unique(),
@@ -18,7 +21,10 @@ export const users = sqliteTable("users", (t) => ({
 export const sessions = sqliteTable(
   "sessions",
   (t) => ({
-    id: t.text().primaryKey(),
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `session_${createId()}`),
     expiresAt: t.integer({ mode: "timestamp" }).notNull(),
     token: t.text().notNull().unique(),
     createdAt: t.integer({ mode: "timestamp" }).notNull(),
@@ -33,10 +39,13 @@ export const sessions = sqliteTable(
   (t) => [index("token_idx").on(t.token), index("user_id_idx").on(t.userId)],
 );
 
-export const account = sqliteTable(
-  "account",
+export const accounts = sqliteTable(
+  "accounts",
   (t) => ({
-    id: t.text().primaryKey(),
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `account_${createId()}`),
     accountId: t.text().notNull(),
     providerId: t.text().notNull(),
     userId: t
@@ -56,10 +65,13 @@ export const account = sqliteTable(
   (t) => [index("accountId_idx").on(t.accountId), index("userId_idx").on(t.userId)],
 );
 
-export const verification = sqliteTable(
-  "verification",
+export const verifications = sqliteTable(
+  "verifications",
   (t) => ({
-    id: t.text().primaryKey(),
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `verification_${createId()}`),
     identifier: t.text().notNull(),
     value: t.text().notNull(),
     expiresAt: t.integer({ mode: "timestamp" }).notNull(),
@@ -70,7 +82,10 @@ export const verification = sqliteTable(
 );
 
 export const organizations = sqliteTable("organizations", (t) => ({
-  id: t.text().primaryKey(),
+  id: t
+    .text()
+    .primaryKey()
+    .$defaultFn(() => `org_${createId()}`),
   name: t.text().notNull(),
   slug: t.text().unique(),
   logo: t.text(),

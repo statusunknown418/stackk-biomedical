@@ -34,8 +34,7 @@ export const patients = sqliteTable(
      * MRN (Medical Record Number) or other unique identifier for the patient.
      */
     identifier: t.text().unique(),
-    organizationId: t.text("organization_id").references(() => members.organizationId),
-    memberId: t.text("user_id").references(() => members.userId),
+    memberId: t.text("member_id").references(() => members.id),
     familyName: t.text("family_name").notNull(),
     givenName: t.text("given_name").notNull(),
     gender: t.text("gender").$type<"male" | "female" | "other" | "unknown">(),
@@ -62,7 +61,6 @@ export const patients = sqliteTable(
   }),
   (t) => [
     index("patient_name_idx").on(t.familyName, t.givenName),
-    index("patient_org_idx").on(t.organizationId),
     index("patient_user_idx").on(t.memberId),
   ],
 );

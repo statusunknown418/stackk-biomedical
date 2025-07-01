@@ -24,10 +24,7 @@ export const practitioners = sqliteTable(
       .primaryKey()
       .$defaultFn(() => `practitioner_${createId()}`),
     identifier: t.text("identifier").notNull(),
-    memberId: t.text("user_id").references(() => members.userId),
-    organizationId: t
-      .text("organization_id")
-      .references(() => members.organizationId, { onDelete: "cascade" }),
+    memberId: t.text().references(() => members.id, { onDelete: "cascade" }),
     name: t.text("name").notNull(),
     gender: t.text("gender"),
     birthDate: t.integer("birth_date", { mode: "timestamp" }),
@@ -49,8 +46,5 @@ export const practitioners = sqliteTable(
       .notNull()
       .$defaultFn(() => new Date()),
   }),
-  (t) => [
-    index("practitioner_user_idx").on(t.memberId),
-    index("practitioner_org_idx").on(t.organizationId),
-  ],
+  (t) => [index("practitioner_user_idx").on(t.memberId)],
 );
