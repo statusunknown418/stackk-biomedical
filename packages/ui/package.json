@@ -53,7 +53,18 @@
     "./toast": "./src/ui/toast.tsx",
     "./toggle-group": "./src/ui/toggle-group.tsx",
     "./toggle": "./src/ui/toggle.tsx",
-    "./tooltip": "./src/ui/tooltip.tsx"
+    "./tooltip": "./src/ui/tooltip.tsx",
+    "./spinner": "./src/ui/spinner.tsx",
+    "./hooks": "./src/hooks",
+    "./animate-on-scroll": "./src/ui/animate-on-scroll.tsx",
+    "./staggered-animation": "./src/ui/staggered-animation.tsx",
+    "./floating-element": "./src/ui/floating-element.tsx",
+    "./animated-badge": "./src/ui/animated-badge.tsx",
+    "./scroll-reveal": "./src/ui/scroll-reveal.tsx",
+    "./animated-card": "./src/ui/animated-card.tsx",
+    "./animated-button": "./src/ui/animated-button.tsx",
+    "./animated-icon": "./src/ui/animated-icon.tsx",
+    "./counter-animation": "./src/ui/counter-animation.tsx"
   },
   "license": "MIT",
   "scripts": {
