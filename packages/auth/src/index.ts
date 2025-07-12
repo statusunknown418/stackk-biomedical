@@ -43,6 +43,7 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         },
       },
     },
+    account: {},
     databaseHooks: {
       user: {
         create: {
@@ -89,6 +90,11 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         clientId: env.AUTH_GOOGLE_ID,
         clientSecret: env.AUTH_GOOGLE_SECRET,
         redirectURI: `${options.productionUrl}/api/auth/callback/google`,
+        accessType: "offline",
+        scope: [
+          "https://www.googleapis.com/auth/calendar.app.created",
+          "https://www.googleapis.com/auth/calendar.freebusy",
+        ],
       },
     },
     logger: {
