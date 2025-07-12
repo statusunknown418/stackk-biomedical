@@ -1,4 +1,4 @@
-import { UsersIcon } from "@phosphor-icons/react";
+import { UsersIcon } from "@phosphor-icons/react/dist/ssr";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@stackk/ui/card";
 import { Progress } from "@stackk/ui/progress";

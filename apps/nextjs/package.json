@@ -25,6 +25,7 @@
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
+    "minimatch": "^10.0.3",
     "next": "^15.3.3",
     "pure-rand": "^7.0.1",
     "react": "catalog:react19",

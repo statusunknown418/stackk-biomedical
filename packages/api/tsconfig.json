@@ -2,7 +2,4 @@
   "extends": "@stackk/tsconfig/internal-package.json",
   "include": ["src"],
   "exclude": ["node_modules"],
-  "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./src/types"]
-  }
 }
