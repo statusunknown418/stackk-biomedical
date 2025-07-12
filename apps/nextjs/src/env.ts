@@ -13,8 +13,6 @@ export const env = createEnv({
   client: {},
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-
-    // NEXT_PUBLIC_CLIENT: process.env.NEXT_PUBLIC_CLIENT,
   },
   skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === "lint",
 });

@@ -19,8 +19,8 @@ export type NewEquipmentSchema = z.infer<typeof newEquipmentSchema>;
 export const newEquipmentTypeSchema = createInsertSchema(equipmentTypes);
 export type NewEquipmentTypeSchema = z.infer<typeof newEquipmentSchema>;
 
-export const technicalInventorySchema = createInsertSchema(technicalInventories);
-export type TechnicalInventorySchema = z.infer<typeof technicalInventorySchema>;
+export const newTechnicalInventorySchema = createInsertSchema(technicalInventories);
+export type NewTechnicalInventorySchema = z.infer<typeof newTechnicalInventorySchema>;
 
-export const auditEventSchema = createInsertSchema(auditEvents);
-export type AuditEventSchema = z.infer<typeof auditEventSchema>;
+export const newAuditEventSchema = createInsertSchema(auditEvents);
+export type NewAuditEventSchema = z.infer<typeof newAuditEventSchema>;

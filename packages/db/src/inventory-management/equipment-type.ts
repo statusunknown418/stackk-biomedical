@@ -33,6 +33,7 @@ export const equipmentTypes = sqliteTable("equipment_type", (t) => ({
     .notNull()
     .$defaultFn(() => new Date()),
   updatedAt: t.integer("updated_at", { mode: "timestamp" }).$onUpdateFn(() => new Date()),
+  deletedAt: t.integer("deleted_at", { mode: "timestamp" }),
 }));
 
 export const EquipmentTypeSchema = createInsertSchema(equipmentTypes);

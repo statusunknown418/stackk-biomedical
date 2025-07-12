@@ -14,6 +14,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@stackk/api": "workspace:*",
     "@stackk/auth": "workspace:*",
     "@stackk/db": "workspace:*",
@@ -28,6 +29,7 @@
     "pure-rand": "^7.0.1",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
+    "slugify": "^1.6.6",
     "superjson": "2.2.2",
     "zod": "catalog:"
   },

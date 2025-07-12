@@ -2,14 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { cn } from "@stackk/ui";
-import { ThemeProvider, ThemeToggle } from "@stackk/ui/theme";
-import { Toaster } from "@stackk/ui/toast";
+import { Toaster } from "@stackk/ui/sonner";
+import { ThemeProvider } from "@stackk/ui/theme";
 
-import { TRPCReactProvider } from "~/trpc/react";
-
-import "~/app/globals.css";
+import "@stackk/ui/globals.css";
 
 import { env } from "~/env";
+import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -53,17 +52,15 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
+          "bg-background text-foreground min-h-svh font-sans antialiased",
           geistSans.variable,
           geistMono.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider>{props.children}</TRPCReactProvider>
-
-          <div className="absolute bottom-4 right-4">
-            <ThemeToggle />
-          </div>
+          <TRPCReactProvider>
+            <main className="min-h-svh">{props.children}</main>
+          </TRPCReactProvider>
 
           <Toaster />
         </ThemeProvider>

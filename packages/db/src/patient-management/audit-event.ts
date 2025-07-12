@@ -44,6 +44,15 @@ export const auditEventSeverities = [
 ] as const;
 export type AuditEventSeverity = (typeof auditEventSeverities)[number];
 
+/**
+ * @description An audit event that is recorded in the system
+ * @param entity - Data or objects used
+ * @param source - Audit Event Reporter
+ * @param type - The type of the audit event
+ * @param severity - The severity of the audit event
+ * @param action - The action taken in the audit event
+ * @param target - The target of the audit event - eg. equipmentId
+ */
 export const auditEvents = sqliteTable(
   "audit_events",
   (t) => ({

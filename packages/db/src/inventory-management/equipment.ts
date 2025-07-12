@@ -4,6 +4,11 @@ import { index, sqliteTable } from "drizzle-orm/sqlite-core";
 import { organizations, teams } from "../authentication";
 import { equipmentTypes } from "./equipment-type";
 
+/**
+ * @description Equipments are organized based on they `equipmentType` but they can also have a `specificType`
+ * for example: `ventilator` -> `specific: pulmonary`
+ * @param deletedAt - Soft delete timestamp
+ */
 export const equipment = sqliteTable(
   "equipment",
   (t) => ({
@@ -13,10 +18,6 @@ export const equipment = sqliteTable(
       .$defaultFn(() => `equip_${createId()}`),
     serialNumber: t.text("serial_number").notNull().unique(),
     logo: t.text("logo"),
-    /**
-     * Equipments are organized based on they `equipmentType` but they can also have a `specificType`
-     * for example: `ventilator` -> `specific: pulmonary`
-     */
     specificType: t.text("specific_type"),
     brand: t.text("brand").notNull(),
     model: t.text("model").notNull(),
@@ -37,9 +38,38 @@ export const equipment = sqliteTable(
       .text("equipment_type_id")
       .notNull()
       .references(() => equipmentTypes.id, { onDelete: "restrict" }),
+    createdAt: t
+      .integer("created_at", { mode: "timestamp" })
+      .$defaultFn(() => new Date()),
+    updatedAt: t
+      .integer("updated_at", { mode: "timestamp" })
+      .$onUpdateFn(() => new Date()),
+    deletedAt: t.integer("deleted_at", { mode: "timestamp" }),
   }),
   (t) => [
     index("equipment_upss_idx").on(t.upssId),
     index("equipment_type_idx").on(t.equipmentTypeId),
   ],
+);
+
+export const equipmentSeverity = ["info", "warning", "error", "critical"];
+
+export const equipmentChangesHistory = sqliteTable(
+  "equipment_changes_history",
+  (t) => ({
+    id: t.integer("id").primaryKey({ autoIncrement: true }),
+    equipmentId: t
+      .text("equipment_id")
+      .notNull()
+      .references(() => equipment.id, { onDelete: "cascade" }),
+    change: t.text("change").notNull(),
+    actor: t.text("actor").notNull(),
+    reason: t.text("reason"),
+    severity: t.text("severity").notNull().default("info"),
+    recordedAt: t
+      .integer("recorded_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  }),
+  (t) => [index("equipment_change_equipment_idx").on(t.equipmentId)],
 );
