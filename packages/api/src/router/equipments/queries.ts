@@ -5,43 +5,7 @@ import { z } from "zod/v4";
 import { protectedProcedure } from "../../trpc";
 
 export const equipmentsQueriesRouter = {
-  getByEquipmentType: protectedProcedure.input(z.string()).query(({ ctx, input }) => {
-    const activeOrganizationId = ctx.auth.session.activeOrganizationId;
-
-    if (!activeOrganizationId) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
-    }
-
-    return ctx.db.query.equipmentTypes.findFirst({
-      where: (t, ops) => {
-        return ops.and(
-          ops.eq(t.organizationId, activeOrganizationId),
-          ops.eq(t.id, input),
-        );
-      },
-      with: {
-        equipment: {
-          columns: {
-            id: true,
-            logo: true,
-            serialNumber: true,
-            specificType: true,
-            brand: true,
-            model: true,
-            status: true,
-          },
-        },
-        upss: {
-          columns: {
-            id: true,
-            name: true,
-            code: true,
-          },
-        },
-      },
-    });
-  }),
-  getAll: protectedProcedure.query(({ ctx }) => {
+  listAll: protectedProcedure.query(({ ctx }) => {
     const activeOrganizationId = ctx.auth.session.activeOrganizationId;
 
     if (!activeOrganizationId) {

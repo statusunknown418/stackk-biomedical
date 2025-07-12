@@ -20,10 +20,12 @@
   },
   "prettier": "@stackk/prettier-config",
   "dependencies": {
+    "@better-fetch/fetch": "^1.1.18",
     "@stackk/auth": "workspace:*",
     "@stackk/db": "workspace:*",
     "@stackk/validators": "workspace:*",
     "@trpc/server": "catalog:",
+    "googleapis": "^150.0.1",
     "superjson": "2.2.2",
     "zod": "catalog:"
   },

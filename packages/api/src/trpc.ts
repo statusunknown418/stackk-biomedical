@@ -35,6 +35,7 @@ export interface ContextReturnType {
   authApi: Auth["api"];
   auth: Session | null;
   db: typeof db;
+  headers: Headers;
 }
 
 export const createTRPCContext = async (
@@ -49,6 +50,7 @@ export const createTRPCContext = async (
     authApi,
     auth,
     db,
+    headers: opts.headers,
   };
 };
 /**
