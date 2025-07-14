@@ -1,0 +1,42 @@
+{
+  "name": "@stackk/transactional",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./otp-email": "./emails/EmailOTPTemplate.tsx"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm email dev --port 3005",
+    "export": "email export",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@react-email/preview-server": "4.1.3",
+    "@stackk/eslint-config": "workspace:*",
+    "@stackk/prettier-config": "workspace:*",
+    "@stackk/tsconfig": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "react-email": "^4.1.3",
+    "typescript": "catalog:"
+  },
+  "prettier": "@stackk/prettier-config",
+  "dependencies": {
+    "@react-email/components": "^0.3.1",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "minimatch": "^10.0.3",
+    "prettier": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "resend": "^4.6.0"
+  }
+}
