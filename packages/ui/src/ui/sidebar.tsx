@@ -2,23 +2,23 @@
 
 import type { VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Button } from "@/ui/button";
-import { Input } from "@/ui/input";
-import { Separator } from "@/ui/separator";
+import { Slot } from "@radix-ui/react-slot";
+import { cva } from "class-variance-authority";
+import { PanelLeftIcon } from "lucide-react";
+
+import { useIsMobile } from "../hooks/use-mobile";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Separator } from "../ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/ui/sheet";
-import { Skeleton } from "@/ui/skeleton";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip";
-import { Slot } from "@radix-ui/react-slot";
-import { cva } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
-
+} from "../ui/sheet";
+import { Skeleton } from "../ui/skeleton";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import { cn } from "../utils";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
