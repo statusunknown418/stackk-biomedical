@@ -8,6 +8,7 @@ import slugify from "slugify";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { cn } from "@stackk/ui";
 import { Button } from "@stackk/ui/button";
 import { CardContent, CardFooter } from "@stackk/ui/card";
 import { Form, FormDescription, FormField, FormItem, FormLabel } from "@stackk/ui/form";
@@ -16,6 +17,15 @@ import { Label } from "@stackk/ui/label";
 
 import { authClient } from "~/auth/client";
 import { NewSpaceSteps } from "../../utils";
+
+const restrictedNames = [
+  "stackk",
+  "stackkbiomedical",
+  "stackkmed",
+  "stackkmed.com",
+  "medstack",
+  "new",
+];
 
 const orgSchema = z.object({
   name: z.string().min(1),
@@ -35,6 +45,14 @@ export const CreateSpaceForm = () => {
   const sluggedName = slugify(form.watch("name"), { lower: true, strict: true });
 
   const onSubmit = form.handleSubmit((data) => {
+    const name = data.name.toLowerCase().trim();
+
+    if (restrictedNames.includes(name)) {
+      return toast.error("Este nombre no puede ser usado", {
+        description: `Por favor, elige un nombre diferente para tu organización`,
+      });
+    }
+
     toast.promise(
       authClient.organization.create({
         ...data,
@@ -42,8 +60,18 @@ export const CreateSpaceForm = () => {
       }),
       {
         loading: "Cargando...",
-        success: (data) => {
-          router.push(`/spaces/${data.data?.slug}/${NewSpaceSteps.details}`);
+        success: async ({ data, error }) => {
+          if (!data?.id || !data.slug) {
+            return toast.error("Algo sucedió", {
+              description: `No se pudo crear la organización - ${error?.message}`,
+            });
+          }
+
+          await authClient.organization.setActive({
+            organizationId: data.id,
+            organizationSlug: data.slug,
+          });
+          router.push(`/spaces/new/${NewSpaceSteps.details}`);
           return "Organización creada";
         },
         error: "Error al crear tu organización",
@@ -70,11 +98,15 @@ export const CreateSpaceForm = () => {
           />
 
           <FormItem>
-            <Label>Url identificador de la organización</Label>
-            <Input defaultValue={sluggedName} disabled />
+            <Label>Url de tu organización</Label>
+            <Input
+              className={cn("font-mono")}
+              defaultValue={`https://stackkmed.com/${sluggedName}`}
+              disabled
+            />
 
             <p className="text-muted-foreground text-sm">
-              El slug de tu negocio sera visible para todos
+              Esta url es generada automáticamente a partir del nombre de tu organización.
             </p>
           </FormItem>
 

@@ -26,9 +26,13 @@ const productionUrl =
 
 export const auth = initAuth({ baseUrl, productionUrl });
 
-export const getSession = cache(async () =>
-  auth.api.getSession({ headers: await headers() }),
-);
+export const getSession = cache(async () => {
+  return auth.api.getSession({ headers: await headers() });
+});
+
+export const getActiveMember = async () => {
+  return auth.api.getActiveMember({ headers: await headers() });
+};
 
 export const getCachedSpaces = cache(async () => {
   return auth.api.listOrganizations({ headers: await headers() });

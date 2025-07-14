@@ -1,4 +1,6 @@
+import { cache } from "react";
 import {
+  emailOTPClient,
   inferAdditionalFields,
   organizationClient,
   passkeyClient,
@@ -6,7 +8,23 @@ import {
 import { createAuthClient } from "better-auth/react";
 
 import type { Auth } from "@stackk/auth";
+import { appAc, appRoles } from "@stackk/auth/access-control";
 
 export const authClient = createAuthClient({
-  plugins: [passkeyClient(), organizationClient(), inferAdditionalFields<Auth>()],
+  plugins: [
+    passkeyClient(),
+    emailOTPClient(),
+    organizationClient({
+      ac: appAc,
+      roles: appRoles,
+      teams: {
+        enabled: true,
+      },
+    }),
+    inferAdditionalFields<Auth>(),
+  ],
+});
+
+export const useActiveOrganization = cache(() => {
+  return authClient.useActiveOrganization();
 });

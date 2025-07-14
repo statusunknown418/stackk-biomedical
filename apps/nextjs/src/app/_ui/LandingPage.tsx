@@ -43,11 +43,15 @@ import { StaggeredAnimation } from "@stackk/ui/staggered-animation";
 import equipmentsImage from "../../../public/landing/equipments.png";
 import heroImage from "../../../public/landing/hero.png";
 import problemImage from "../../../public/landing/problem.png";
+import { SignOut } from "./SignOut";
 
 export const MedStackLanding = () => {
   return (
     <div className="relative min-h-svh">
       {/* Header */}
+
+      <SignOut />
+
       <header className="border-border/40 bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl">
         <div className="flex h-16 items-center justify-between px-6 md:px-8">
           <AnimateOnScroll animation="slideRight" delay={100}>
@@ -56,7 +60,7 @@ export const MedStackLanding = () => {
                 <Activity className="h-4 w-4 text-white" />
               </div>
               <span className="text-foreground text-xl font-medium tracking-tight">
-                MedStack
+                StackMed
               </span>
             </Link>
           </AnimateOnScroll>
@@ -96,15 +100,20 @@ export const MedStackLanding = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-muted-foreground hover:text-foreground font-normal"
+                className="text-muted-foreground hover:text-foreground"
+                asChild
               >
-                Sign In
+                <Link href="/login">Sign In</Link>
               </Button>
+
               <Button
                 size="sm"
                 className="bg-indigo-500 font-normal text-white shadow-sm hover:bg-indigo-600"
+                asChild
               >
-                Request Demo
+                <Link href="/login">
+                  Empieza ahora <ArrowRight />
+                </Link>
               </Button>
             </div>
           </AnimateOnScroll>
@@ -216,7 +225,7 @@ export const MedStackLanding = () => {
                     placeholder="blur"
                     width="600"
                     height="500"
-                    alt="MedStack Dashboard"
+                    alt="StackMed Dashboard"
                     className="border-border/50 relative mx-auto rounded-2xl border shadow-2xl"
                   />
                 </div>
@@ -721,7 +730,7 @@ export const MedStackLanding = () => {
       {/* Footer */}
       <footer className="border-border/40 bg-muted/20 flex w-full shrink-0 flex-col items-center gap-2 border-t px-6 py-8 sm:flex-row md:px-8">
         <p className="text-muted-foreground text-xs font-light">
-          © 2024 MedStack. All rights reserved. HIPAA compliant healthcare technology.
+          © 2024 StackMed. All rights reserved. HIPAA compliant healthcare technology.
         </p>
         <nav className="flex gap-4 sm:ml-auto sm:gap-6">
           <Link

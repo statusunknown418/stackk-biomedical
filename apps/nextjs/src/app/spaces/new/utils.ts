@@ -1,7 +1,7 @@
 export enum NewSpaceSteps {
-  start,
-  details,
-  import,
-  invite,
-  finish,
+  start = "start",
+  details = "details",
+  import = "import",
+  invite = "invite",
+  finish = "finish",
 }

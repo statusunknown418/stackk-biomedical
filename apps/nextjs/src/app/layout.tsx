@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 
 import { cn } from "@stackk/ui";
-import { Toaster } from "@stackk/ui/sonner";
 import { ThemeProvider } from "@stackk/ui/theme";
-
-import "@stackk/ui/globals.css";
 
 import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
+
+import "@stackk/ui/globals.css";
+import "~/nextjs.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -42,6 +43,7 @@ const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
 });
+
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -52,17 +54,27 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "bg-background text-foreground min-h-svh font-sans antialiased",
+          "bg-background text-foreground h-svh font-sans antialiased",
           geistSans.variable,
           geistMono.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
-            <main className="min-h-svh">{props.children}</main>
+            <main className="h-full">{props.children}</main>
           </TRPCReactProvider>
 
-          <Toaster />
+          <Toaster
+            richColors
+            className="toaster group"
+            style={
+              {
+                "--normal-bg": "var(--popover)",
+                "--normal-text": "var(--popover-foreground)",
+                "--normal-border": "var(--border)",
+              } as React.CSSProperties
+            }
+          />
         </ThemeProvider>
       </body>
     </html>

@@ -42,11 +42,11 @@ export default async function NewSpacePage() {
         </Card>
 
         <div className="mt-8 flex flex-col items-start gap-2 text-sm">
-          <span className="text-muted-foreground px-2">
+          <span className="text-muted-foreground">
             Puedes terminar el proceso más tarde, pero recuerda que si no creas una
             organización no podrás acceder a StackkBiomedical
           </span>
-          <SignOut variant="link" />
+          <SignOut variant="link" className="text-foreground" />
         </div>
       </article>
     </section>

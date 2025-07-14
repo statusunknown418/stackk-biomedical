@@ -10,12 +10,13 @@ import { Spinner } from "@stackk/ui/spinner";
 
 import { authClient } from "~/auth/client";
 
-export const SignOut = (props: { variant?: ButtonVariants }) => {
+export const SignOut = (props: { variant?: ButtonVariants; className?: string }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Button
       variant={props.variant ?? "outline"}
+      className={props.className}
       onClick={async () => {
         try {
           setIsLoading(true);

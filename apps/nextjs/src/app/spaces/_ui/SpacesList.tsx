@@ -25,7 +25,7 @@ export const SpacesList = ({ organizations }: { organizations: Organization[] })
               organizationSlug: organization.slug,
               fetchOptions: {
                 onSuccess: () => {
-                  router.push(`/${organization.slug}`);
+                  router.push(`/spaces/${organization.slug}`);
                 },
               },
             });
