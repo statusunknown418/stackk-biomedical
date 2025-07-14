@@ -26,6 +26,7 @@ export const sessions = sqliteTable(
       .primaryKey()
       .$defaultFn(() => `session_${createId()}`),
     expiresAt: t.integer({ mode: "timestamp" }).notNull(),
+    activeOrganizationId: t.text(),
     token: t.text().notNull().unique(),
     createdAt: t.integer({ mode: "timestamp" }).notNull(),
     updatedAt: t.integer({ mode: "timestamp" }).notNull(),
@@ -109,11 +110,13 @@ export const members = sqliteTable(
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     role: t.text("role").default("member").notNull(),
+    teamId: t.text("team_id").references(() => teams.id, { onDelete: "set null" }),
     createdAt: t.integer("created_at", { mode: "timestamp" }).notNull(),
   }),
   (t) => [
     index("relation_org_id_idx").on(t.organizationId),
     index("relation_user_id_idx").on(t.userId),
+    index("relation_team_id_idx").on(t.teamId),
   ],
 );
 
@@ -125,7 +128,7 @@ export const teams = sqliteTable(
       .primaryKey()
       .$defaultFn(() => `team_${createId()}`),
     name: t.text().notNull(),
-    code: t.text().notNull(),
+    code: t.text().unique(),
     description: t.text(),
     location: t.text(),
     organizationId: t
@@ -157,6 +160,7 @@ export const invitations = sqliteTable(
     role: text("role"),
     status: text("status").default("pending").notNull(),
     expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
+    teamId: text("team_id").references(() => teams.id, { onDelete: "set null" }),
     inviterId: text("inviter_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),

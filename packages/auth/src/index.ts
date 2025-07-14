@@ -2,11 +2,13 @@ import type { BetterAuthOptions } from "better-auth";
 import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { oAuthProxy, organization } from "better-auth/plugins";
+import { emailOTP, oAuthProxy, organization } from "better-auth/plugins";
 import { passkey } from "better-auth/plugins/passkey";
 import { uniformIntDistribution, xoroshiro128plus } from "pure-rand";
 
 import { db } from "@stackk/db/client";
+import { resend } from "@stackk/transactional";
+import { EmailOTPTemplate } from "@stackk/transactional/otp-email";
 
 import { authEnv } from "../env";
 import { appAc, appRoles } from "./access-control";
@@ -79,9 +81,23 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         roles: appRoles,
         teams: {
           enabled: true,
+          defaultTeam: {
+            enabled: true,
+          },
           maximumTeams() {
             return 20;
           },
+        },
+      }),
+      emailOTP({
+        sendVerificationOTP: async (options) => {
+          await resend.emails.send({
+            from: "StackMed <stackmed@concard.app>",
+            to: options.email,
+            subject: "Código de verificación | StackMed",
+            react: EmailOTPTemplate({ validationCode: options.otp }),
+          });
+          return;
         },
       }),
     ],

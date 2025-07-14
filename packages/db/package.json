@@ -21,7 +21,6 @@
   "scripts": {
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "pnpm studio",
     "dev:next": "pnpm studio",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
@@ -36,6 +35,7 @@
     "drizzle-orm": "^0.44.1",
     "drizzle-zod": "^0.8.2",
     "minimatch": "^10.0.3",
+    "pure-rand": "^7.0.1",
     "zod": "catalog:"
   },
   "devDependencies": {

@@ -16,7 +16,6 @@ export const calendarRouter = {
     const t2 = performance.now();
 
     const googleOauth = await getGoogleClient(ctx);
-    console.log(await googleOauth.getAccessToken());
 
     try {
       const { data } = await google.calendar("v3").calendars.insert({
@@ -28,7 +27,7 @@ export const calendarRouter = {
         auth: googleOauth,
       });
 
-      console.log(`[LOG] Time to list user accounts: ${t2 - t1}ms`);
+      console.log(`[LOG] Time to list user accounts: ${t2 - t1}ms`, data);
 
       return {
         success: true,

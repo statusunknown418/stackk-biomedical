@@ -8,7 +8,8 @@
     ".": "./src/index.ts",
     "./middleware": "./src/middleware.ts",
     "./client": "./src/client.ts",
-    "./env": "./env.ts"
+    "./env": "./env.ts",
+    "./access-control": "./src/access-control.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
@@ -21,8 +22,9 @@
   "dependencies": {
     "@better-auth/expo": "1.2.9",
     "@stackk/db": "workspace:*",
-    "@t3-oss/env-nextjs": "^0.13.6",
-    "better-auth": "1.2.9",
+    "@stackk/transactional": "workspace:*",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "better-auth": "1.2.12",
     "minimatch": "^10.0.3",
     "next": "^15.3.3",
     "react": "catalog:react19",
