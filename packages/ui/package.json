@@ -64,7 +64,15 @@
     "./animated-card": "./src/ui/animated-card.tsx",
     "./animated-button": "./src/ui/animated-button.tsx",
     "./animated-icon": "./src/ui/animated-icon.tsx",
-    "./counter-animation": "./src/ui/counter-animation.tsx"
+    "./counter-animation": "./src/ui/counter-animation.tsx",
+    "./data-table-headers": "./src/ui/data-table-headers.tsx",
+    "./data-table-pagination": "./src/ui/data-table-pagination.tsx",
+    "./data-table-view-options": "./src/ui/data-table-view-options.tsx",
+    "./table-filters": "./src/ui/data-table-filter/index.tsx",
+    "./debounced-input": "./src/ui/data-table-filter/ui/debounced-input.tsx",
+    "./kibo-ui/relative-time": "./src/ui/kibo-ui/relative-time/index.tsx",
+    "./kibo-ui/multi-select": "./src/ui/kibo-ui/tags/index.tsx",
+    "./origin-ui/timeline": "./src/ui/timeline.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -105,6 +113,7 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tailwindcss/postcss": "^4.1.11",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -114,7 +123,7 @@
     "lucide-react": "^0.516.0",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.2",
-    "react-day-picker": "^9.7.0",
+    "react-day-picker": "^9.8.0",
     "react-hook-form": "^7.57.0",
     "react-resizable-panels": "^3.0.3",
     "recharts": "^2.15.3",
