@@ -1,4 +1,5 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { headers } from "next/headers";
 import { TRPCError } from "@trpc/server";
 
 import { auditEvents } from "@stackk/db/schema";
@@ -11,7 +12,7 @@ export const equipmentMutationsRouter = {
     .input(requestMoveEquipmentSchema)
     .mutation(async ({ ctx, input }) => {
       const t1 = performance.now();
-      const member = await ctx.authApi.getActiveMember();
+      const member = await ctx.authApi.getActiveMember({ headers: await headers() });
       const t2 = performance.now();
 
       console.log(`[LOG] Time to get active member: ${t2 - t1}ms`);

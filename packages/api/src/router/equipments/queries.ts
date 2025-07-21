@@ -75,6 +75,21 @@ export const equipmentsQueriesRouter = {
           ops.eq(t.id, input),
         );
       },
+      with: {
+        equipmentType: {
+          columns: {
+            id: true,
+            name: true,
+          },
+        },
+        upss: {
+          columns: {
+            id: true,
+            code: true,
+            name: true,
+          },
+        },
+      },
     });
   }),
 } satisfies TRPCRouterRecord;

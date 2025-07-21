@@ -27,6 +27,7 @@ export const sessions = sqliteTable(
       .$defaultFn(() => `session_${createId()}`),
     expiresAt: t.integer({ mode: "timestamp" }).notNull(),
     activeOrganizationId: t.text(),
+    activeTeamId: t.text(),
     token: t.text().notNull().unique(),
     createdAt: t.integer({ mode: "timestamp" }).notNull(),
     updatedAt: t.integer({ mode: "timestamp" }).notNull(),
@@ -145,6 +146,32 @@ export const teams = sqliteTable(
       .$onUpdateFn(() => new Date()),
   }),
   (t) => [index("team_organization_id_idx").on(t.organizationId)],
+);
+
+export const teamMembers = sqliteTable(
+  "team_members",
+  (t) => ({
+    id: t
+      .text()
+      .primaryKey()
+      .$defaultFn(() => `team_member_${createId()}`),
+    teamId: t
+      .text()
+      .notNull()
+      .references(() => teams.id, { onDelete: "set null" }),
+    userId: t
+      .text()
+      .notNull()
+      .references(() => users.id, { onDelete: "set null" }),
+    createdAt: t
+      .integer({ mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  }),
+  (t) => [
+    index("team_member_team_id_idx").on(t.teamId),
+    index("team_member_user_id_idx").on(t.userId),
+  ],
 );
 
 export const invitations = sqliteTable(

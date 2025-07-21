@@ -23,6 +23,7 @@ export const appAc = createAccessControl(statement);
  * @borrows **INVENTORY** module
  * @description The owner role has full access to all modules in the application.
  * @description Supposed to be assigned to *managers*, *owners*, *CEOs*
+ * @description **LEVEL 1 - OWNER**
  */
 const owner = appAc.newRole({
   equipmentTypes: ["create", "update", "delete"],
@@ -37,6 +38,7 @@ const owner = appAc.newRole({
  * access to other modules. It can create and update equipment types and equipments,
  * but cannot delete them.
  * @description Supposed to be assigned to *managers*, *supervisors*, *admins*
+ * @description **LEVEL 2 - ADMIN**
  */
 const admin = appAc.newRole({
   equipmentTypes: ["create", "update"],
@@ -49,6 +51,7 @@ const admin = appAc.newRole({
  * @borrows **INVENTORY** module
  * @description The member role has limited access to the inventory module only
  * @description Supposed to be assigned to *technicians*, *engineers*, *interns*
+ * @description **LEVEL 3 - MEMBER**
  */
 const member = appAc.newRole({
   equipmentTypes: ["update"],
