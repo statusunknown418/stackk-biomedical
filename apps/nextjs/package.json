@@ -14,6 +14,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@phosphor-icons/react": "^2.1.10",
     "@stackk/api": "workspace:*",
     "@stackk/auth": "workspace:*",
@@ -28,11 +29,13 @@
     "@trpc/tanstack-react-query": "catalog:",
     "minimatch": "^10.0.3",
     "next": "^15.3.3",
+    "nuqs": "^2.4.3",
     "pure-rand": "^7.0.1",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "slugify": "^1.6.6",
     "superjson": "2.2.2",
+    "usehooks-ts": "^3.1.1",
     "zod": "catalog:"
   },
   "devDependencies": {
