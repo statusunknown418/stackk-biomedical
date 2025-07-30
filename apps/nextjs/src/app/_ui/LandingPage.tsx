@@ -40,10 +40,6 @@ import { Input } from "@stackk/ui/input";
 import { ScrollReveal } from "@stackk/ui/scroll-reveal";
 import { StaggeredAnimation } from "@stackk/ui/staggered-animation";
 
-import equipmentsImage from "../../../public/landing/equipments.png";
-import heroImage from "../../../public/landing/hero.png";
-import problemImage from "../../../public/landing/problem.png";
-
 export const MedStackLanding = () => {
   return (
     <div className="relative min-h-svh">
@@ -218,7 +214,7 @@ export const MedStackLanding = () => {
                 <div className="relative">
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-400/20 to-purple-500/20 blur-3xl"></div>
                   <Image
-                    src={heroImage}
+                    src={"/landing/hero.png"}
                     placeholder="blur"
                     width="600"
                     height="500"
@@ -424,7 +420,7 @@ export const MedStackLanding = () => {
                 <div className="relative">
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-400/15 to-purple-500/15 blur-2xl"></div>
                   <Image
-                    src={equipmentsImage}
+                    src={"/landing/equipments.png"}
                     placeholder="blur"
                     width="600"
                     height="500"
@@ -449,7 +445,7 @@ export const MedStackLanding = () => {
               <div className="relative">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-400/15 to-blue-500/15 blur-2xl"></div>
                 <Image
-                  src={problemImage}
+                  src={"/landing/problem.png"}
                   width="600"
                   height="500"
                   alt="FHIR HL7 Integration"
