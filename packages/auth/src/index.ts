@@ -81,6 +81,7 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         roles: appRoles,
         teams: {
           enabled: true,
+          allowRemovingAllTeams: false,
           defaultTeam: {
             enabled: true,
           },
