@@ -29,6 +29,7 @@
     "@trpc/tanstack-react-query": "catalog:",
     "minimatch": "^10.0.3",
     "next": "^15.3.3",
+    "nextjs-toploader": "^3.8.16",
     "nuqs": "^2.4.3",
     "pure-rand": "^7.0.1",
     "react": "catalog:react19",

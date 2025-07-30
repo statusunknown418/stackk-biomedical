@@ -1,5 +1,7 @@
+import { Suspense } from "react";
+
 import { getActiveMember, getSession } from "~/auth/server";
-import { CalendarTest } from "../_ui/CalendarTest";
+import { CalendarTest } from "../_components/CalendarTest";
 
 export default async function SpacePage(props: {
   params: Promise<{ spaceSlug: string }>;
@@ -19,7 +21,9 @@ export default async function SpacePage(props: {
 
       <h1 className="text-2xl">TODO: Main dashboard with metrics</h1>
 
-      <CalendarTest />
+      <Suspense>
+        <CalendarTest />
+      </Suspense>
     </section>
   );
 }

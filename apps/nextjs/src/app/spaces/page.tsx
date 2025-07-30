@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { Skeleton } from "@stackk/ui/skeleton";
 
-import { SpacesListWrapper } from "./_ui/SpacesListWrapper";
+import { SpacesListWrapper } from "./_components/SpacesListWrapper";
 
 export default function DashPage() {
   return (

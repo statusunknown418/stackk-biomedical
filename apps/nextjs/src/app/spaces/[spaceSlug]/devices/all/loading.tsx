@@ -2,7 +2,7 @@ import { Skeleton } from "@stackk/ui/skeleton";
 
 export default function LoadingEquipmentsPage() {
   return (
-    <section className="grid grid-cols-[220px_auto]">
+    <section className="grid gap-6">
       <div>
         <h1 className="text-3xl">Inventario de equipos</h1>
 

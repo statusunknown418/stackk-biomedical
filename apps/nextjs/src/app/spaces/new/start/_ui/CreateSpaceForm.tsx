@@ -8,12 +8,17 @@ import slugify from "slugify";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { cn } from "@stackk/ui";
 import { Button } from "@stackk/ui/button";
 import { CardContent, CardFooter } from "@stackk/ui/card";
-import { Form, FormDescription, FormField, FormItem, FormLabel } from "@stackk/ui/form";
+import {
+  Form,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@stackk/ui/form";
 import { Input } from "@stackk/ui/input";
-import { Label } from "@stackk/ui/label";
 
 import { authClient } from "~/auth/client";
 import { NewSpaceSteps } from "../../utils";
@@ -25,13 +30,16 @@ const restrictedNames = [
   "stackkmed.com",
   "medstack",
   "new",
+  "stackkstudios",
 ];
 
 const orgSchema = z.object({
   name: z.string().min(1),
   logo: z.string().optional(),
+  slug: z.string().min(1),
 });
-export const CreateSpaceForm = () => {
+
+export const CreateSpaceForm = ({ generatedId }: { generatedId: string }) => {
   const router = useRouter();
 
   const form = useForm({
@@ -39,13 +47,16 @@ export const CreateSpaceForm = () => {
     defaultValues: {
       name: "",
       logo: undefined,
+      slug: "",
     },
   });
 
-  const sluggedName = slugify(form.watch("name"), { lower: true, strict: true });
+  const baseSlug = form.watch("slug");
+  const sluggedName =
+    slugify(baseSlug, { lower: true, strict: true }) + `-${generatedId}`;
 
   const onSubmit = form.handleSubmit((data) => {
-    const name = data.name.toLowerCase().trim();
+    const name = data.name.trim();
 
     if (restrictedNames.includes(name)) {
       return toast.error("Este nombre no puede ser usado", {
@@ -87,33 +98,55 @@ export const CreateSpaceForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre del centro médico</FormLabel>
+                <FormLabel>Nombre de la organización</FormLabel>
                 <Input {...field} />
 
                 <FormDescription>
                   El nombre de tu centro médico sera visible en la aplicación
                 </FormDescription>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="slug"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Siglas (Nombre corto)</FormLabel>
+                <Input className="font-mono" {...field} />
+
+                <FormDescription>
+                  Será utilizado como url para identificar la organización.
+                </FormDescription>
+
+                {baseSlug && (
+                  <div>
+                    <FormDescription>
+                      Generado como:{" "}
+                      <span className="font-mono text-green-500">{sluggedName}</span>
+                    </FormDescription>
+
+                    <FormDescription className="flex pl-4">
+                      * Nota: Los últimos 5 caracteres son un identificador único
+                    </FormDescription>
+                  </div>
+                )}
+
+                <FormMessage />
               </FormItem>
             )}
           />
 
           <FormItem>
-            <Label>Url de tu organización</Label>
-            <Input
-              className={cn("font-mono")}
-              defaultValue={`https://stackkmed.com/${sluggedName}`}
-              disabled
-            />
-
-            <p className="text-muted-foreground text-sm">
-              Esta url es generada automáticamente a partir del nombre de tu organización.
-            </p>
-          </FormItem>
-
-          <FormItem>
             <FormLabel>Logo del centro médico</FormLabel>
 
-            <FormDescription>TODO: Under </FormDescription>
+            <FormDescription>
+              TODO: Under -{" "}
+              https://linear.app/stackkstudios/issue/STK-137/fe-add-logo-uploader-with-uploadthing-createspaceform
+            </FormDescription>
           </FormItem>
         </CardContent>
 

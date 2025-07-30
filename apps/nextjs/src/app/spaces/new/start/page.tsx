@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { init } from "@paralleldrive/cuid2";
 import { BuildingsIcon } from "@phosphor-icons/react/dist/ssr";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@stackk/ui/card";
@@ -15,6 +16,8 @@ export default async function NewSpacePage() {
   if (!session?.user) {
     return redirect("/");
   }
+
+  const generateCuid2 = init({ length: 5 });
 
   return (
     <section className="grid h-full place-items-center">
@@ -38,7 +41,7 @@ export default async function NewSpacePage() {
 
           <Separator />
 
-          <CreateSpaceForm />
+          <CreateSpaceForm generatedId={generateCuid2()} />
         </Card>
 
         <div className="mt-8 flex flex-col items-start gap-2 text-sm">

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "sonner";
 
 import { cn } from "@stackk/ui";
@@ -59,9 +61,13 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           geistMono.variable,
         )}
       >
+        <NextTopLoader showSpinner={false} height={4} color="#6366f1" />
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
-            <main className="h-full">{props.children}</main>
+            <NuqsAdapter>
+              <main className="h-svh overflow-y-scroll">{props.children}</main>
+            </NuqsAdapter>
           </TRPCReactProvider>
 
           <Toaster

@@ -28,3 +28,7 @@ export const authClient = createAuthClient({
 export const useActiveOrganization = cache(() => {
   return authClient.useActiveOrganization();
 });
+
+export const useGetMember = cache(() => {
+  return authClient.useActiveMember();
+});

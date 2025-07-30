@@ -43,14 +43,11 @@ import { StaggeredAnimation } from "@stackk/ui/staggered-animation";
 import equipmentsImage from "../../../public/landing/equipments.png";
 import heroImage from "../../../public/landing/hero.png";
 import problemImage from "../../../public/landing/problem.png";
-import { SignOut } from "./SignOut";
 
 export const MedStackLanding = () => {
   return (
     <div className="relative min-h-svh">
       {/* Header */}
-
-      <SignOut />
 
       <header className="border-border/40 bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl">
         <div className="flex h-16 items-center justify-between px-6 md:px-8">

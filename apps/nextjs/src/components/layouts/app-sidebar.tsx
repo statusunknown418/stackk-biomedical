@@ -2,19 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Activity,
-  Building2,
-  Calendar,
-  FileText,
-  Heart,
-  Home,
-  Settings,
-  Shield,
-  Stethoscope,
-  Users,
-  Wrench,
-} from "lucide-react";
+import { BuildingIcon, UsbIcon } from "@phosphor-icons/react";
+import { Activity, Building2, Heart, Home, Settings, Shield, Wrench } from "lucide-react";
 
 import {
   Sidebar,
@@ -29,76 +18,96 @@ import {
   SidebarRail,
 } from "@stackk/ui/sidebar";
 import { Skeleton } from "@stackk/ui/skeleton";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@stackk/ui/tooltip";
 
 import { authClient } from "~/auth/client";
 
 const navigation = [
   {
     title: "Overview",
+    path: "",
     items: [
       {
         title: "Dashboard",
-        url: "#",
+        url: "",
         icon: Home,
       },
       {
-        title: "Analytics",
-        url: "#",
+        title: "Analíticas",
+        url: "/analytics",
         icon: Activity,
       },
     ],
   },
   {
-    title: "Clinical Management",
+    title: "Teams",
+    path: "/teams",
     items: [
       {
-        title: "Patients",
-        url: "#",
-        icon: Users,
-      },
-      {
-        title: "Diagnostic Reports",
-        url: "#",
-        icon: FileText,
-      },
-      {
-        title: "Appointments",
-        url: "#",
-        icon: Calendar,
+        title: "UPSS",
+        url: "",
+        icon: BuildingIcon,
       },
     ],
   },
+
   {
-    title: "Equipment Management",
+    title: "Gestión de Dispositivos",
+    path: "/devices",
     items: [
       {
-        title: "Inventory",
-        url: "equipments",
-        icon: Stethoscope,
+        title: "Inventario",
+        url: "/all",
+        icon: UsbIcon,
       },
       {
-        title: "Maintenance",
-        url: "maintenance",
+        title: "Mantenimiento",
+        url: "/maintenance",
         icon: Wrench,
       },
       {
-        title: "Types",
-        url: "#",
+        title: "Tipos de Equipos",
+        url: "/types",
         icon: Building2,
       },
     ],
   },
+  /**
+   * TODO: Add this back once Inventory is done
+   */
+  // {
+  //   title: "Gestión de Pacientes",
+  //   path: "hl7",
+  //   items: [
+  //     {
+  //       title: "Pacientes",
+  //       url: "#",
+  //       icon: Users,
+  //     },
+  //     {
+  //       title: "Informes Diagnósticos",
+  //       url: "#",
+  //       icon: FileText,
+  //     },
+  //     {
+  //       title: "Citas y Consultas",
+  //       url: "#",
+  //       icon: Calendar,
+  //     },
+  //   ],
+  // },
   {
     title: "System",
+    path: "/system",
     items: [
       {
         title: "Audit Logs",
-        url: "#",
+        url: "/audit",
         icon: Shield,
       },
       {
         title: "Settings",
-        url: "#",
+        url: "/settings",
         icon: Settings,
       },
     ],
@@ -120,14 +129,24 @@ export function AppSidebar({ knownSlug }: { knownSlug: string }) {
             {isPending ? (
               <Skeleton className="h-10 w-full" />
             ) : (
-              <SidebarMenuButton className="gap-3 hover:bg-transparent active:bg-transparent">
-                <Heart className="h-5 w-5 text-red-500" />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <SidebarMenuButton className="gap-3 hover:bg-transparent active:bg-transparent">
+                    <Heart className="h-5 w-5 !text-red-500" />
 
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium capitalize">{data?.name}</span>
-                  <span className="truncate text-xs">{data?.slug}</span>
-                </div>
-              </SidebarMenuButton>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-medium capitalize">
+                        {data?.name}
+                      </span>
+                      <span className="text-muted-foreground truncate font-mono text-xs">
+                        {data?.slug}
+                      </span>
+                    </div>
+                  </SidebarMenuButton>
+                </TooltipTrigger>
+
+                <TooltipContent>{data?.name ?? "No active organization"}</TooltipContent>
+              </Tooltip>
             )}
           </SidebarMenuItem>
         </SidebarMenu>
@@ -139,20 +158,28 @@ export function AppSidebar({ knownSlug }: { knownSlug: string }) {
             <SidebarGroupLabel>{section.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {section.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname.startsWith(`${baseItemUrl}/${item.url}`)}
-                      tooltip={item.title}
-                    >
-                      <Link href={`${baseItemUrl}/${item.url}`}>
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                {section.items.map((item) => {
+                  const isDashboard =
+                    item.title.toLowerCase() === "dashboard" && pathname === baseItemUrl;
+
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={
+                          isDashboard ||
+                          pathname === `${baseItemUrl}${section.path}${item.url}`
+                        }
+                        tooltip={item.title}
+                      >
+                        <Link href={`${baseItemUrl}${section.path}${item.url}`}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
