@@ -8,3 +8,4 @@ export * from "./safety-test";
 export * from "./performance-test";
 export * from "./risk-assessment";
 export * from "./relations";
+export * from "./documents";

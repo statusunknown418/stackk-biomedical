@@ -1,7 +1,12 @@
 import { relations } from "drizzle-orm";
 
 import { teams, users } from "../authentication";
-import { equipment, equipmentChangesHistory } from "./equipment";
+import {
+  equipment,
+  equipmentChangesHistory,
+  equipmentMaker,
+  equipmentProviders,
+} from "./equipment";
 import { equipmentLifeSheets } from "./equipment-life-sheet";
 import { equipmentTypes } from "./equipment-type";
 import { maintenanceProtocol } from "./maintenance-protocol";
@@ -36,6 +41,14 @@ export const equipmentRelations = relations(equipment, ({ one, many }) => ({
   performanceTests: many(performanceTest),
   riskAssessment: one(riskAssessment),
   changesHistory: many(equipmentChangesHistory),
+  maker: one(equipmentMaker, {
+    fields: [equipment.makerId],
+    references: [equipmentMaker.id],
+  }),
+  provider: one(equipmentProviders, {
+    fields: [equipment.providerId],
+    references: [equipmentProviders.id],
+  }),
 }));
 
 export const technicalInventoryRelations = relations(technicalInventories, ({ one }) => ({
