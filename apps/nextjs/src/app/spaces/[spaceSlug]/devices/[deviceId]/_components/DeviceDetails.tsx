@@ -8,14 +8,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { CogIcon } from "lucide-react";
 
 import { Button } from "@stackk/ui/button";
-import { ScrollArea } from "@stackk/ui/scroll-area";
 import { Skeleton } from "@stackk/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@stackk/ui/tabs";
 
 import { useTRPC } from "~/trpc/react";
-import { MaintenanceOverview } from "./MaintenanceOverview";
-import { GeneralTab } from "./tabs/General";
-import { HistoryTab } from "./tabs/history/History";
 
 export const DeviceDetails = ({ children }: PropsWithChildren) => {
   const params = useParams<{ deviceId: string; spaceSlug: string }>();
