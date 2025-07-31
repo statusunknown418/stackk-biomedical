@@ -69,7 +69,8 @@ export const ScheduleMaintenanceDialog = ({
 
   const trpc = useTRPC();
 
-  const { data: members } = useSuspenseQuery(trpc.auth.getMembers.queryOptions());
+  const { data: org } = useSuspenseQuery(trpc.auth.getMembers.queryOptions());
+  const { members } = org;
 
   const form = useForm();
 
@@ -179,21 +180,21 @@ export const ScheduleMaintenanceDialog = ({
                         <CommandList>
                           <CommandEmpty>No framework found.</CommandEmpty>
                           <CommandGroup>
-                            {members.map((user) => (
+                            {members.map((member) => (
                               <CommandItem
-                                key={user.userId}
-                                value={user.user.username}
+                                value={member.userId}
+                                key={member.userId}
                                 onSelect={(currentValue) => {
                                   setValue(currentValue === value ? "" : currentValue);
                                   setOpen(false);
                                 }}
                               >
-                                {user.user.name}
+                                {member.user.name}
 
                                 <Check
                                   className={cn(
                                     "ml-auto",
-                                    value === user.userId ? "opacity-100" : "opacity-0",
+                                    value === member.userId ? "opacity-100" : "opacity-0",
                                   )}
                                 />
                               </CommandItem>

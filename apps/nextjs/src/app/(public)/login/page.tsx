@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 
 import {
@@ -24,9 +25,11 @@ export default function SignIn() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent>
-          <RedirectionWrapper />
-        </CardContent>
+        <Suspense>
+          <CardContent>
+            <RedirectionWrapper />
+          </CardContent>
+        </Suspense>
 
         <CardFooter>
           <div className="flex w-full justify-center py-4">
