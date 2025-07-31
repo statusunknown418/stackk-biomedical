@@ -121,6 +121,17 @@ export const members = sqliteTable(
   ],
 );
 
+export const membersRelations = relations(members, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [members.organizationId],
+    references: [organizations.id],
+  }),
+  user: one(users, {
+    fields: [members.userId],
+    references: [users.id],
+  }),
+}));
+
 export const teams = sqliteTable(
   "teams",
   (t) => ({

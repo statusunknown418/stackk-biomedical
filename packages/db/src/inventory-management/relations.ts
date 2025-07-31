@@ -134,3 +134,11 @@ export const riskAssessmentRelations = relations(riskAssessment, ({ one }) => ({
     references: [equipment.id],
   }),
 }));
+
+export const equipmentMakerRelations = relations(equipmentMaker, ({ many }) => ({
+  equipments: many(equipment),
+}));
+
+export const equipmentProvidersRelations = relations(equipmentProviders, ({ many }) => ({
+  equipments: many(equipment),
+}));

@@ -4,11 +4,12 @@ import { ScrollArea } from "@stackk/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@stackk/ui/tabs";
 
 import { HydrateClient, prefetch, trpc } from "~/trpc/server";
+import { CalendarTab } from "./_components/calendar-tab";
 import { DeviceDetails } from "./_components/DeviceDetails";
-import { MaintenanceOverview } from "./_components/MaintenanceOverview";
 import { DocumentsTab } from "./_components/tabs/documents";
 import { GeneralTab } from "./_components/tabs/general";
-import { HistoryTab } from "./_components/tabs/history/History";
+import { HistoryTab } from "./_components/tabs/history";
+import { MaintenanceTab } from "./_components/tabs/maintenance";
 
 export default async function DevicePage({
   params,
@@ -20,6 +21,7 @@ export default async function DevicePage({
   prefetch(trpc.equipments.queries.getDetails.queryOptions(deviceId));
   prefetch(trpc.equipments.queries.getHistory.queryOptions(deviceId));
   prefetch(trpc.equipments.queries.getDocuments.queryOptions(deviceId));
+  prefetch(trpc.auth.getMembers.queryOptions());
 
   return (
     <HydrateClient>
@@ -31,7 +33,7 @@ export default async function DevicePage({
               <TabsTrigger value="history">Historial (hoja de vida)</TabsTrigger>
               <TabsTrigger value="maintenance">Mantenimiento</TabsTrigger>
               <TabsTrigger value="docs">Documentos</TabsTrigger>
-              <TabsTrigger value="settings">Ajustes</TabsTrigger>
+              <TabsTrigger value="calendar">Calendario</TabsTrigger>
             </ScrollArea>
           </TabsList>
 
@@ -44,11 +46,15 @@ export default async function DevicePage({
           </Suspense>
 
           <Suspense>
-            <MaintenanceOverview />
+            <MaintenanceTab />
           </Suspense>
 
           <Suspense>
             <DocumentsTab deviceId={deviceId} />
+          </Suspense>
+
+          <Suspense>
+            <CalendarTab />
           </Suspense>
         </Tabs>
       </DeviceDetails>

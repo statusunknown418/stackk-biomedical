@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { ArrowSquareOutIcon, BuildingIcon, CalendarDotIcon } from "@phosphor-icons/react";
+import { ArrowSquareOutIcon, BuildingIcon } from "@phosphor-icons/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { CogIcon } from "lucide-react";
 
@@ -11,6 +11,7 @@ import { Button } from "@stackk/ui/button";
 import { Skeleton } from "@stackk/ui/skeleton";
 
 import { useTRPC } from "~/trpc/react";
+import { ScheduleMaintenanceDialog } from "./ScheduleMaintenance";
 
 export const DeviceDetails = ({ children }: PropsWithChildren) => {
   const params = useParams<{ deviceId: string; spaceSlug: string }>();
@@ -69,10 +70,7 @@ export const DeviceDetails = ({ children }: PropsWithChildren) => {
             Configurar
           </Button>
 
-          <Button size="sm">
-            <CalendarDotIcon />
-            Agendar mantenimiento
-          </Button>
+          <ScheduleMaintenanceDialog data={data} />
         </div>
       </header>
 

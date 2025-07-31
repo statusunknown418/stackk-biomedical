@@ -215,7 +215,6 @@ export const MedStackLanding = () => {
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-400/20 to-purple-500/20 blur-3xl"></div>
                   <Image
                     src={"/landing/hero.png"}
-                    placeholder="blur"
                     width="600"
                     height="500"
                     alt="StackMed Dashboard"
@@ -421,7 +420,6 @@ export const MedStackLanding = () => {
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-400/15 to-purple-500/15 blur-2xl"></div>
                   <Image
                     src={"/landing/equipments.png"}
-                    placeholder="blur"
                     width="600"
                     height="500"
                     alt="Equipment Management Dashboard"

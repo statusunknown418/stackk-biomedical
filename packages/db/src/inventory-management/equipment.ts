@@ -1,5 +1,4 @@
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
 import { index, sqliteTable } from "drizzle-orm/sqlite-core";
 
 import { organizations, teams } from "../authentication";
@@ -77,7 +76,9 @@ export const equipmentChangesHistory = sqliteTable(
     cost: t.integer("cost"),
     actor: t.text("actor").notNull(),
     reason: t.text("reason"),
+    assignee: t.text("assignee"),
     severity: t.text("severity").notNull().default("info"),
+    modality: t.text(),
     recordedAt: t
       .integer("recorded_at", { mode: "timestamp" })
       .notNull()
@@ -115,11 +116,3 @@ export const equipmentMaker = sqliteTable(
   }),
   (t) => [index("equipment_maker_name_idx").on(t.name)],
 );
-
-export const equipmentMakerRelations = relations(equipmentMaker, ({ many }) => ({
-  equipments: many(equipment),
-}));
-
-export const equipmentProvidersRelations = relations(equipmentProviders, ({ many }) => ({
-  equipments: many(equipment),
-}));

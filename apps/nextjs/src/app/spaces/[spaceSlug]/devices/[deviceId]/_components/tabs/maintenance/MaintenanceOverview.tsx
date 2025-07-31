@@ -1,15 +1,12 @@
 "use client";
 
-import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { Pie, PieChart } from "recharts";
 
 import type { ChartConfig } from "@stackk/ui/chart";
-import { Button } from "@stackk/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@stackk/ui/card";
@@ -18,8 +15,11 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@stackk/ui/ch
 export const description = "A donut chart";
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+  { browser: "chrome", visitors: 10, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 2, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 1, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 17, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 9, fill: "var(--color-other)" },
 ];
 
 const chartConfig = {
@@ -27,22 +27,34 @@ const chartConfig = {
     label: "Visitors",
   },
   chrome: {
-    label: "Chrome",
+    label: "Agendados",
     color: "var(--chart-1)",
   },
+  safari: {
+    label: "Preventivos",
+    color: "var(--chart-2)",
+  },
+  firefox: {
+    label: "Correctivos",
+    color: "var(--chart-3)",
+  },
+  edge: {
+    label: "Cancelados",
+    color: "var(--chart-4)",
+  },
   other: {
-    label: "Other",
+    label: "Otros",
     color: "var(--chart-5)",
   },
 } satisfies ChartConfig;
 
-export function CostsOverview() {
+export function MaintenanceOverview() {
   return (
-    <Card>
+    <Card className="flex h-max flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Costos</CardTitle>
+        <CardTitle>Mantenimientos</CardTitle>
 
-        <CardDescription>Vista general de costos asociados a este equipo</CardDescription>
+        <CardDescription>Estadísticas de mantenimientos</CardDescription>
       </CardHeader>
 
       <CardContent className="flex-1 pb-0">
@@ -56,13 +68,6 @@ export function CostsOverview() {
           </PieChart>
         </ChartContainer>
       </CardContent>
-
-      <CardFooter>
-        <Button className="ml-auto" size="sm" variant="outline">
-          Ver más detalles
-          <ArrowSquareOutIcon />
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
