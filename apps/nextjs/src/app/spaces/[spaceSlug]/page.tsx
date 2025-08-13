@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import { getActiveMember, getSession } from "~/auth/server";
-import { CalendarTest } from "../_components/CalendarTest";
+import { getActiveMember, getSession } from "~/lib/auth/server";
+import { CalendarTest } from "../../../components/spaces/CalendarTest";
 
 export default async function SpacePage(props: {
   params: Promise<{ spaceSlug: string }>;

@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { auth } from "~/auth/server";
+import { auth } from "~/lib/auth/server";
 
 export default async function GroupsPage() {
   const teams = await auth.api.listUserTeams({ headers: await headers() });

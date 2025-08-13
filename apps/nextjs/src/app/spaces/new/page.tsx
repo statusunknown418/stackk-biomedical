@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { getSession } from "~/auth/server";
+import { getSession } from "~/lib/auth/server";
 
 export default async function NewSpacePage() {
   const session = await getSession();

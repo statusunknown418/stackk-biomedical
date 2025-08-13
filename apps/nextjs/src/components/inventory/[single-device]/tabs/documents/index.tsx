@@ -8,7 +8,7 @@ import { Button } from "@stackk/ui/button";
 import { CardAction, CardDescription, CardHeader, CardTitle } from "@stackk/ui/card";
 import { TabsContent } from "@stackk/ui/tabs";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 
 export const DocumentsTab = ({ deviceId }: { deviceId: string }) => {
   const trpc = useTRPC();

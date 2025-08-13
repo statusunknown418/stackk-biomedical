@@ -1,4 +1,4 @@
-import { MedStackLanding } from "./_ui/LandingPage";
+import { MedStackLanding } from "~/components/layouts/LandingPage";
 
 export default function LandingPage() {
   return <MedStackLanding />;

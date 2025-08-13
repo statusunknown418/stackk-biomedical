@@ -3,13 +3,13 @@ import { Suspense } from "react";
 import { ScrollArea } from "@stackk/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@stackk/ui/tabs";
 
-import { HydrateClient, prefetch, trpc } from "~/trpc/server";
-import { CalendarTab } from "./_components/calendar-tab";
-import { DeviceDetails } from "./_components/DeviceDetails";
-import { DocumentsTab } from "./_components/tabs/documents";
-import { GeneralTab } from "./_components/tabs/general";
-import { HistoryTab } from "./_components/tabs/history";
-import { MaintenanceTab } from "./_components/tabs/maintenance";
+import { DeviceDetails } from "~/components/inventory/[single-device]/DeviceDetails";
+import { CalendarTab } from "~/components/inventory/[single-device]/tabs/calendar-tab";
+import { DocumentsTab } from "~/components/inventory/[single-device]/tabs/documents";
+import { GeneralTab } from "~/components/inventory/[single-device]/tabs/general";
+import { HistoryTab } from "~/components/inventory/[single-device]/tabs/history";
+import { MaintenanceTab } from "~/components/inventory/[single-device]/tabs/maintenance";
+import { HydrateClient, prefetch, trpc } from "~/lib/trpc/server";
 
 export default async function DevicePage({
   params,

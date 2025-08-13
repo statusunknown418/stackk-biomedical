@@ -20,8 +20,8 @@ import {
 } from "@stackk/ui/form";
 import { Input } from "@stackk/ui/input";
 
-import { authClient } from "~/auth/client";
-import { NewSpaceSteps } from "../../utils";
+import { authClient } from "~/lib/auth/client";
+import { NewSpaceSteps } from "./utils";
 
 const restrictedNames = [
   "stackk",

@@ -8,7 +8,7 @@ import { cn } from "@stackk/ui";
 import { ThemeProvider } from "@stackk/ui/theme";
 
 import { env } from "~/env";
-import { TRPCReactProvider } from "~/trpc/react";
+import { TRPCReactProvider } from "~/lib/trpc/react";
 
 import "@stackk/ui/globals.css";
 import "~/nextjs.css";

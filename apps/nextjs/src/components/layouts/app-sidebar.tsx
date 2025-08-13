@@ -20,7 +20,7 @@ import {
 import { Skeleton } from "@stackk/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@stackk/ui/tooltip";
 
-import { authClient } from "~/auth/client";
+import { authClient } from "~/lib/auth/client";
 
 const navigation = [
   {

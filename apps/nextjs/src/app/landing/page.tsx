@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@stackk/ui
 
 import { env } from "~/env";
 import { AuthShowcase } from "../_ui/auth-showcase";
-import { SignOut } from "../_ui/SignOut";
+import { SignOut } from "../../components/layouts/SignOut";
 
 // import { CreatePostForm, PostCardSkeleton, PostList } from "./_components/posts";
 

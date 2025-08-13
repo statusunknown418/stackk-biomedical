@@ -56,7 +56,7 @@ import {
   SheetTrigger,
 } from "@stackk/ui/sheet";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 
 export const ScheduleMaintenanceDialog = ({
   data,

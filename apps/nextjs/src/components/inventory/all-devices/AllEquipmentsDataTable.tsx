@@ -28,7 +28,7 @@ import {
   TableRow,
 } from "@stackk/ui/table";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 import { allEquipmentsDataTableColumns } from "./columns";
 
 export function AllEquipmentsDataTable() {

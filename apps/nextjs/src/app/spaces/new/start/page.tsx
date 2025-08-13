@@ -6,9 +6,9 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@stackk/ui/card";
 import { Progress } from "@stackk/ui/progress";
 import { Separator } from "@stackk/ui/separator";
 
-import { SignOut } from "~/app/_ui/SignOut";
-import { getSession } from "~/auth/server";
-import { CreateSpaceForm } from "./_ui/CreateSpaceForm";
+import { SignOut } from "~/components/layouts/SignOut";
+import { CreateSpaceForm } from "~/components/onboarding/CreateSpaceForm";
+import { getSession } from "~/lib/auth/server";
 
 export default async function NewSpacePage() {
   const session = await getSession();

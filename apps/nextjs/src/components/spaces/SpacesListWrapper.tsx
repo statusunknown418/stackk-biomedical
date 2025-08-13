@@ -3,8 +3,8 @@ import { EnvelopeIcon, TriangleDashedIcon } from "@phosphor-icons/react/dist/ssr
 import { Alert, AlertDescription } from "@stackk/ui/alert";
 import { Button } from "@stackk/ui/button";
 
-import { SignOut } from "~/app/_ui/SignOut";
-import { getCachedSpaces } from "~/auth/server";
+import { SignOut } from "~/components/layouts/SignOut";
+import { getCachedSpaces } from "~/lib/auth/server";
 import { SpacesList } from "./SpacesList";
 
 export const SpacesListWrapper = async () => {

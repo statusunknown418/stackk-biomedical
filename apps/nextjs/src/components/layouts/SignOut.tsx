@@ -8,7 +8,7 @@ import type { ButtonVariants } from "@stackk/ui/button";
 import { Button } from "@stackk/ui/button";
 import { Spinner } from "@stackk/ui/spinner";
 
-import { authClient } from "~/auth/client";
+import { authClient } from "~/lib/auth/client";
 
 export const SignOut = (props: { variant?: ButtonVariants; className?: string }) => {
   const [isLoading, setIsLoading] = useState(false);

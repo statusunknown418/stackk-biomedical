@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import { Button } from "@stackk/ui/button";
 
-import { auth, getSession, signOut } from "~/auth/server";
+import { auth, getSession, signOut } from "~/lib/auth/server";
 
 export async function AuthShowcase() {
   const session = await getSession();

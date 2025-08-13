@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 import { Button } from "@stackk/ui/button";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 
 export const CalendarTest = () => {
   const trpc = useTRPC();

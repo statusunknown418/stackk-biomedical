@@ -7,7 +7,7 @@ import { ArrowRightIcon } from "lucide-react";
 
 import { Card, CardContent } from "@stackk/ui/card";
 
-import { authClient } from "~/auth/client";
+import { authClient } from "~/lib/auth/client";
 
 export const SpacesList = ({ organizations }: { organizations: Organization[] }) => {
   const router = useRouter();

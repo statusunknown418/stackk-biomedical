@@ -65,25 +65,25 @@ export const MedStackLanding = () => {
                 href="#features"
                 className="text-muted-foreground relative transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-indigo-500 after:transition-all after:duration-200 hover:scale-105 hover:text-indigo-500 hover:after:w-full"
               >
-                Features
+                Funcionalidades
               </Link>
               <Link
                 href="#benefits"
                 className="text-muted-foreground relative transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-indigo-500 after:transition-all after:duration-200 hover:scale-105 hover:text-indigo-500 hover:after:w-full"
               >
-                Benefits
+                Beneficios
               </Link>
               <Link
                 href="#integration"
                 className="text-muted-foreground relative transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-indigo-500 after:transition-all after:duration-200 hover:scale-105 hover:text-indigo-500 hover:after:w-full"
               >
-                Integration
+                Integración
               </Link>
               <Link
                 href="#contact"
                 className="text-muted-foreground relative transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-indigo-500 after:transition-all after:duration-200 hover:scale-105 hover:text-indigo-500 hover:after:w-full"
               >
-                Contact
+                Contacto
               </Link>
             </nav>
           </AnimateOnScroll>
@@ -96,7 +96,7 @@ export const MedStackLanding = () => {
                 className="text-muted-foreground hover:text-foreground"
                 asChild
               >
-                <Link href="/login">Sign In</Link>
+                <Link href="/login">Login</Link>
               </Button>
 
               <Button
@@ -122,16 +122,16 @@ export const MedStackLanding = () => {
 
               <DropdownMenuContent>
                 <DropdownMenuItem>
-                  <Link href="/#features">Features</Link>
+                  <Link href="/#features">Funcionalidades</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/#benefits">Benefits</Link>
+                  <Link href="/#benefits">Beneficios</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/#integration">Integration</Link>
+                  <Link href="/#integration">Integración</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/#contact">Contact</Link>
+                  <Link href="/#contact">Contacto</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -141,7 +141,7 @@ export const MedStackLanding = () => {
 
       {/* Hero Section */}
       <section className="relative flex w-full justify-center overflow-hidden py-16 md:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-purple-50/50 dark:from-indigo-950/50 dark:via-transparent dark:to-purple-800/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-purple-50/50 dark:from-indigo-900/30 dark:via-transparent dark:to-purple-800/30" />
         <div className="relative container flex items-center justify-center px-6 md:px-8">
           <div className="w-full max-w-7xl text-center lg:flex lg:items-center lg:justify-between lg:text-left">
             <div className="space-y-8">
@@ -150,23 +150,25 @@ export const MedStackLanding = () => {
                   className="w-fit border-indigo-200 bg-indigo-50 font-normal text-indigo-600 hover:bg-indigo-100 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-400"
                   icon={<Sparkles className="h-3 w-3" />}
                 >
-                  Healthcare Innovation
+                  Innovación en salud
                 </AnimatedBadge>
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="slideUp" delay={400}>
                 <h1 className="text-foreground text-4xl leading-tight font-light tracking-tight sm:text-5xl xl:text-6xl/tight">
-                  Revolutionize Medical Equipment
-                  <span className="font-normal text-indigo-500"> Management</span>
+                  Revoluciona la Gestión de
+                  <span className="font-normal text-indigo-400"> Equipos Biomédicos</span>
                 </h1>
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="slideUp" delay={600}>
                 <p className="text-muted-foreground max-w-[600px] text-lg leading-relaxed font-light">
-                  Transform your healthcare facility with our comprehensive platform for
-                  inventory tracking, maintenance scheduling, and compliance management.
-                  Reduce downtime, improve efficiency, and deliver exceptional patient
-                  care.
+                  Transforma tu centro de salud con nuestra plataforma integral para el{" "}
+                  <span className="text-indigo-400">seguimiento de inventario</span>, la{" "}
+                  <span className="text-indigo-400">programación de mantenimientos</span>{" "}
+                  y el <span className="text-indigo-400">cumplimiento normativo</span>.
+                  Reduce tiempos de inactividad, mejora la eficiencia operativa y
+                  garantiza una atención médica de calidad superior.
                 </p>
               </AnimateOnScroll>
 
@@ -174,19 +176,20 @@ export const MedStackLanding = () => {
                 <div className="flex flex-col justify-start gap-4 min-[400px]:flex-row">
                   <Button
                     size="lg"
-                    className="group bg-indigo-500 font-normal text-white shadow-sm transition-all duration-200 hover:scale-105 hover:bg-indigo-600 hover:shadow-lg"
+                    className="group bg-indigo-500 text-white transition-all duration-200 hover:scale-105 hover:bg-indigo-600 hover:shadow-lg"
                   >
                     <Calendar className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:rotate-12" />
-                    Schedule Demo
+                    Agenda una demo
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </Button>
+
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-border hover:bg-muted/50 bg-transparent font-normal transition-all duration-200 hover:scale-105 hover:shadow-md"
+                    className="border-border hover:bg-muted/50 bg-transparent transition-all duration-200 hover:scale-105 hover:shadow-md"
                   >
                     <Play className="mr-2 h-4 w-4 transition-transform duration-200 hover:scale-110" />
-                    Watch Demo
+                    Ver soluciones
                   </Button>
                 </div>
               </AnimateOnScroll>
@@ -228,18 +231,19 @@ export const MedStackLanding = () => {
       </section>
 
       {/* Problem Statement */}
-      <section className="flex w-full justify-center py-16 md:py-24 lg:py-32">
+      <section className="flex w-full justify-center border-y py-16 md:py-24 lg:py-32">
         <div className="container px-6 md:px-8">
           <ScrollReveal direction="up" delay={200}>
             <div className="mx-auto flex max-w-4xl flex-col items-center justify-center space-y-6 text-center">
               <div className="space-y-4">
-                <h2 className="text-foreground text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-                  Critical Challenges in Healthcare Equipment Management
+                <h2 className="text-foreground text-3xl font-light tracking-tight text-balance sm:text-4xl lg:text-5xl">
+                  Desafíos Críticos en la Gestión de Equipos Biomédicos
                 </h2>
-                <p className="text-muted-foreground max-w-[800px] text-lg leading-relaxed font-light">
-                  Healthcare facilities face mounting pressure to maintain equipment
-                  efficiency while ensuring compliance and patient safety. Traditional
-                  methods are failing to meet modern demands.
+                <p className="text-muted-foreground max-w-[800px] text-lg leading-relaxed font-light text-balance">
+                  Los centros de salud enfrentan una presión creciente por mantener la
+                  eficiencia de sus equipos sin comprometer la seguridad del paciente ni
+                  el cumplimiento normativo. Los métodos tradicionales ya no son
+                  suficientes para las demandas del entorno actual.
                 </p>
               </div>
             </div>
@@ -252,7 +256,7 @@ export const MedStackLanding = () => {
           >
             <AnimatedCard
               hoverColor="red"
-              className="border-red-200/60 bg-red-50/30 hover:bg-red-50/50 dark:border-red-800/30 dark:bg-red-950/20 dark:hover:bg-red-950/30"
+              className="border-red-200/60 bg-red-50/30 hover:bg-red-50/50 dark:border-red-800/30 dark:bg-red-900/10 dark:hover:bg-red-950/30"
             >
               <CardContent className="flex h-full flex-col items-center space-y-6 p-8 text-center">
                 <AnimatedIcon
@@ -260,15 +264,15 @@ export const MedStackLanding = () => {
                   borderColor="border-red-200/60 dark:border-red-800/30"
                   hoverAnimation="rotate"
                 >
-                  <Database className="h-7 w-7 text-red-500 dark:text-red-400" />
+                  <Database className="h-7 w-7 text-red-500 dark:text-red-500" />
                 </AnimatedIcon>
                 <div className="space-y-3">
                   <h3 className="text-foreground text-xl font-medium transition-colors duration-300 group-hover:text-red-600 dark:group-hover:text-red-400">
-                    Inventory Chaos
+                    Caos en el inventario
                   </h3>
                   <p className="text-muted-foreground leading-relaxed font-light">
-                    Manual tracking leads to equipment loss, overstocking, and critical
-                    shortages during emergencies.
+                    El seguimiento manual provoca pérdidas de equipos, sobrestock
+                    innecesario y escasez crítica en momentos de emergencia.
                   </p>
                 </div>
               </CardContent>
@@ -276,7 +280,7 @@ export const MedStackLanding = () => {
 
             <AnimatedCard
               hoverColor="orange"
-              className="border-orange-200/60 bg-orange-50/30 hover:bg-orange-50/50 dark:border-orange-800/30 dark:bg-orange-950/20 dark:hover:bg-orange-950/30"
+              className="border-orange-200/60 bg-orange-50/30 hover:bg-orange-50/50 dark:border-orange-800/30 dark:bg-orange-900/10 dark:hover:bg-orange-950/30"
             >
               <CardContent className="flex h-full flex-col items-center space-y-6 p-8 text-center">
                 <AnimatedIcon
@@ -288,11 +292,11 @@ export const MedStackLanding = () => {
                 </AnimatedIcon>
                 <div className="space-y-3">
                   <h3 className="text-foreground text-xl font-medium transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">
-                    Maintenance Delays
+                    Retrasos en el Mantenimiento
                   </h3>
                   <p className="text-muted-foreground leading-relaxed font-light">
-                    Reactive maintenance causes unexpected downtime and compromises
-                    patient care quality.
+                    Intervenciones tardías aumentan los tiempos de inactividad y reducen
+                    la eficiencia operativa del centro médico
                   </p>
                 </div>
               </CardContent>
@@ -300,7 +304,7 @@ export const MedStackLanding = () => {
 
             <AnimatedCard
               hoverColor="yellow"
-              className="border-yellow-200/60 bg-yellow-50/30 hover:bg-yellow-50/50 dark:border-yellow-800/30 dark:bg-yellow-950/20 dark:hover:bg-yellow-950/30"
+              className="border-yellow-200/60 bg-yellow-50/30 hover:bg-yellow-50/50 dark:border-yellow-800/30 dark:bg-yellow-900/10 dark:hover:bg-yellow-950/30"
             >
               <CardContent className="flex h-full flex-col items-center space-y-6 p-8 text-center">
                 <AnimatedIcon
@@ -312,11 +316,11 @@ export const MedStackLanding = () => {
                 </AnimatedIcon>
                 <div className="space-y-3">
                   <h3 className="text-foreground text-xl font-medium transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400">
-                    Compliance Risks
+                    Riesgos Normativos
                   </h3>
                   <p className="text-muted-foreground leading-relaxed font-light">
-                    Fragmented systems make it difficult to maintain regulatory compliance
-                    and audit trails.
+                    La falta de integración entre sistemas dificulta cumplir con las
+                    normativas sanitarias y mantener trazabilidad para auditorías.
                   </p>
                 </div>
               </CardContent>
@@ -332,17 +336,23 @@ export const MedStackLanding = () => {
       >
         <div className="container px-6 md:px-8">
           <ScrollReveal direction="up" delay={100}>
-            <div className="mx-auto flex max-w-4xl flex-col items-center justify-center space-y-6 text-center">
+            <div className="mx-auto flex max-w-5xl flex-col items-center justify-center space-y-6 text-center">
               <div className="space-y-4">
                 <Badge className="border-indigo-200 bg-indigo-50 font-normal text-indigo-600 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-400">
-                  Comprehensive Solution
+                  Solución comprensiva
                 </Badge>
+
                 <h2 className="text-foreground text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-                  Powerful Features for Modern Healthcare
+                  Tecnología que Transforma la{" "}
+                  <span className="bg-gradient-to-r from-cyan-500 to-indigo-400 bg-clip-text text-transparent">
+                    Gestión Biomédica
+                  </span>
                 </h2>
-                <p className="text-muted-foreground max-w-[800px] text-lg leading-relaxed font-light">
-                  Our platform addresses every aspect of medical equipment management with
-                  cutting-edge technology and healthcare-specific workflows.
+
+                <p className="text-muted-foreground max-w-[800px] self-center justify-self-center text-center text-lg font-light">
+                  Nuestra plataforma cubre todos los aspectos de la gestión de equipos
+                  médicos, combinando tecnología avanzada con flujos de trabajo diseñados
+                  para el sector salud
                 </p>
               </div>
             </div>
@@ -364,12 +374,12 @@ export const MedStackLanding = () => {
                   </AnimatedIcon>
                   <div className="space-y-3">
                     <h3 className="text-foreground text-xl font-medium">
-                      Robust Inventory Management
+                      Gestión del inventario robusto
                     </h3>
                     <p className="text-muted-foreground leading-relaxed font-light">
-                      Real-time tracking of all medical equipment with barcode/RFID
-                      integration, automated stock levels, and predictive analytics for
-                      optimal resource allocation.
+                      Deja atrás las hojas de cálculo. Nuestra plataforma te permite
+                      buscar equipos y accesorios de forma rápida y organizada gracias a
+                      filtros inteligentes y una interfaz clara y moderna.
                     </p>
                   </div>
                 </div>
@@ -383,12 +393,12 @@ export const MedStackLanding = () => {
                   </AnimatedIcon>
                   <div className="space-y-3">
                     <h3 className="text-foreground text-xl font-medium">
-                      Real-Time Notifications
+                      Alertas Inteligentes en Tiempo Real
                     </h3>
                     <p className="text-muted-foreground leading-relaxed font-light">
-                      Instant alerts to relevant personnel when equipment is moved,
-                      requires maintenance, or approaches expiration dates with
-                      customizable notification preferences.
+                      Recibe notificaciones cuando un equipo necesita atención. Anticípate
+                      al mantenimiento y mantén el control con alertas personalizadas que
+                      llegan justo a tiempo.
                     </p>
                   </div>
                 </div>
@@ -402,12 +412,12 @@ export const MedStackLanding = () => {
                   </AnimatedIcon>
                   <div className="space-y-3">
                     <h3 className="text-foreground text-xl font-medium">
-                      Automated Maintenance Scheduling
+                      Programación Inteligente de Mantenimientos
                     </h3>
                     <p className="text-muted-foreground leading-relaxed font-light">
-                      Intelligent scheduling for both preventive and corrective
-                      maintenance with vendor integration and comprehensive compliance
-                      tracking.
+                      Olvídate de agendar manualmente. Programa mantenimientos preventivos
+                      y correctivos de forma automática, recibe alertas y mantén un
+                      historial completo, todo desde un solo lugar.
                     </p>
                   </div>
                 </div>
@@ -443,7 +453,7 @@ export const MedStackLanding = () => {
               <div className="relative">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-400/15 to-blue-500/15 blur-2xl"></div>
                 <Image
-                  src={"/landing/problem.png"}
+                  src={"/landing/hl7.webp"}
                   width="600"
                   height="500"
                   alt="FHIR HL7 Integration"
@@ -456,43 +466,48 @@ export const MedStackLanding = () => {
               <AnimateOnScroll animation="slideLeft" delay={300}>
                 <div className="space-y-4">
                   <Badge className="w-fit border-emerald-200 bg-emerald-50 font-normal text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400">
-                    Seamless Integration
+                    Integración rápida y sin complicaciones
                   </Badge>
                   <h2 className="text-foreground text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-                    FHIR & HL7 Standards Compliance
+                    Conéctate con Historias Clínicas y Sistemas de Salud Sin
+                    Complicaciones
                   </h2>
                   <p className="text-muted-foreground max-w-[600px] text-lg leading-relaxed font-light">
-                    Seamlessly integrate with existing healthcare systems through FHIR and
-                    HL7 standards, ensuring complete interoperability with patient records
-                    and clinical workflows.
+                    Integra tu plataforma con hospitales y clínicas sin necesidad de
+                    desarrollos complejos. Cumplimos con los estándares FHIR y HL7 para
+                    asegurar compatibilidad total con EMR, historiales médicos y flujos
+                    clínicos digitales.
                   </p>
                 </div>
               </AnimateOnScroll>
 
               <StaggeredAnimation animation="slideLeft" staggerDelay={100}>
                 <ul className="grid gap-4 py-4">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-500" />
+                  <li className="flex space-x-3">
+                    <CheckCircle className="size-6 flex-shrink-0 text-emerald-500" />
                     <span className="text-muted-foreground font-light">
-                      FHIR R4 compliant data exchange
+                      Evita riesgos gracias a una integración confiable con los estándares
+                      más usados del sector.
                     </span>
                   </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-500" />
+                  <li className="flex space-x-3">
+                    <CheckCircle className="size-6 flex-shrink-0 text-emerald-500" />
                     <span className="text-muted-foreground font-light">
-                      HL7 v2.x and v3 message processing
+                      Funciona con los sistemas que ya usas (EMR, HIS, etc.) sin necesidad
+                      de adaptaciones complejas.
                     </span>
                   </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-500" />
+                  <li className="flex space-x-3">
+                    <CheckCircle className="size-6 flex-shrink-0 text-emerald-500" />
                     <span className="text-muted-foreground font-light">
-                      Patient and clinical history integration
+                      Los datos se actualizan al instante para que siempre tengas la
+                      información correcta.
                     </span>
                   </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-500" />
+                  <li className="flex space-x-3">
+                    <CheckCircle className="size-6 flex-shrink-0 text-emerald-500" />
                     <span className="text-muted-foreground font-light">
-                      Real-time EMR synchronization
+                      Nos adaptamos a tus flujos clínicos, no al revés.
                     </span>
                   </li>
                 </ul>
@@ -512,12 +527,12 @@ export const MedStackLanding = () => {
             <div className="mx-auto flex max-w-4xl flex-col items-center justify-center space-y-6 text-center">
               <div className="space-y-4">
                 <Badge className="border-indigo-200 bg-indigo-50 font-normal text-indigo-600 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-400">
-                  Measurable Impact
+                  Alto impacto
                 </Badge>
-                <h2 className="text-foreground text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-                  Transform Your Healthcare Operations
+                <h2 className="text-foreground text-3xl font-light tracking-tight text-balance sm:text-4xl lg:text-5xl">
+                  Transforma tu Centro de Salud desde el Primer Día
                 </h2>
-                <p className="text-muted-foreground max-w-[800px] text-lg leading-relaxed font-light">
+                <p className="text-muted-foreground max-w-[800px] justify-self-center text-center text-lg leading-relaxed font-light">
                   Experience significant improvements in efficiency, compliance, and
                   patient outcomes with our comprehensive equipment management solution.
                 </p>
@@ -526,7 +541,7 @@ export const MedStackLanding = () => {
           </ScrollReveal>
 
           <StaggeredAnimation
-            animation="scaleIn"
+            animation="slideLeft"
             staggerDelay={150}
             className="mx-auto grid max-w-6xl items-stretch gap-8 py-16 lg:grid-cols-2"
           >

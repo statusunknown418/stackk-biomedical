@@ -17,7 +17,7 @@ import {
 import { Table, TableBody, TableCell, TableRow } from "@stackk/ui/table";
 import { TabsContent } from "@stackk/ui/tabs";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 
 export const GeneralTab = ({ deviceId }: { deviceId: string }) => {
   const trpc = useTRPC();

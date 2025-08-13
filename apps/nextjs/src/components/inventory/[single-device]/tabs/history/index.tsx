@@ -21,7 +21,7 @@ import { Separator } from "@stackk/ui/separator";
 import { TabsContent } from "@stackk/ui/tabs";
 import { Textarea } from "@stackk/ui/textarea";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 
 const items = [
   {

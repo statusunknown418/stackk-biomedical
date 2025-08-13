@@ -2,7 +2,7 @@ import type { PropsWithChildren } from "react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { getSession } from "~/auth/server";
+import { getSession } from "~/lib/auth/server";
 
 export default async function DashLayout(props: PropsWithChildren) {
   const t1 = performance.now();

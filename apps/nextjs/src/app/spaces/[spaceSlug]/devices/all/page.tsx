@@ -1,5 +1,5 @@
-import { HydrateClient, prefetch, trpc } from "~/trpc/server";
-import { AllEquipmentsDataTable } from "./_components/AllEquipmentsDataTable";
+import { AllEquipmentsDataTable } from "~/components/inventory/all-devices/AllEquipmentsDataTable";
+import { HydrateClient, prefetch, trpc } from "~/lib/trpc/server";
 
 export default function AllEquipmentsPage() {
   prefetch(trpc.equipments.queries.listAll.queryOptions());

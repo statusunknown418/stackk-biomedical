@@ -6,7 +6,7 @@ import { Progress } from "@stackk/ui/progress";
 import { Tabs, TabsList, TabsTrigger } from "@stackk/ui/tabs";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@stackk/ui/tooltip";
 
-import { TeamInvites } from "./_ui/TeamInvites";
+import { TeamInvites } from "~/components/onboarding/TeamInvites";
 
 export default function InvitePeoplePage() {
   return (

@@ -10,7 +10,7 @@ import { Input } from "@stackk/ui/input";
 import { Label } from "@stackk/ui/label";
 import { Separator } from "@stackk/ui/separator";
 
-import { authClient } from "~/auth/client";
+import { authClient } from "~/lib/auth/client";
 
 export const RedirectionWrapper = () => {
   const searchParams = useSearchParams();

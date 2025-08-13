@@ -10,7 +10,7 @@ import { CogIcon } from "lucide-react";
 import { Button } from "@stackk/ui/button";
 import { Skeleton } from "@stackk/ui/skeleton";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/lib/trpc/react";
 import { ScheduleMaintenanceDialog } from "./ScheduleMaintenance";
 
 export const DeviceDetails = ({ children }: PropsWithChildren) => {
