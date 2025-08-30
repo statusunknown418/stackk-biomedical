@@ -28,7 +28,7 @@
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
     "minimatch": "^10.0.3",
-    "next": "^15.3.3",
+    "next": "^15.4.7",
     "nextjs-toploader": "^3.8.16",
     "nuqs": "^2.4.3",
     "pure-rand": "^7.0.1",
