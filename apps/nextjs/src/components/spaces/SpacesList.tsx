@@ -2,15 +2,18 @@
 
 import type { Organization } from "better-auth/plugins";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "lucide-react";
 
+import { Button } from "@stackk/ui/button";
 import { Card, CardContent } from "@stackk/ui/card";
 
 import { authClient } from "~/lib/auth/client";
 
 export const SpacesList = ({ organizations }: { organizations: Organization[] }) => {
   const router = useRouter();
+  const session = authClient.useSession();
 
   return (
     <ul className="grid gap-3">
@@ -22,10 +25,9 @@ export const SpacesList = ({ organizations }: { organizations: Organization[] })
           onClick={async () => {
             await authClient.organization.setActive({
               organizationId: organization.id,
-              organizationSlug: organization.slug,
               fetchOptions: {
-                onSuccess: () => {
-                  router.push(`/spaces/${organization.slug}`);
+                onSuccess: ({ data }) => {
+                  router.push(`/spaces/${data.slug}`);
                 },
               },
             });
@@ -48,6 +50,10 @@ export const SpacesList = ({ organizations }: { organizations: Organization[] })
           </Card>
         </button>
       ))}
+
+      <Button asChild>
+        <Link href="/spaces/new">Crear nuevo workspace</Link>
+      </Button>
     </ul>
   );
 };

@@ -1,16 +1,21 @@
+"use client";
+
 import { EnvelopeIcon, TriangleDashedIcon } from "@phosphor-icons/react/dist/ssr";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { Alert, AlertDescription } from "@stackk/ui/alert";
 import { Button } from "@stackk/ui/button";
 
 import { SignOut } from "~/components/layouts/SignOut";
-import { getCachedSpaces } from "~/lib/auth/server";
+import { useTRPC } from "~/lib/trpc/react";
 import { SpacesList } from "./SpacesList";
 
-export const SpacesListWrapper = async () => {
-  const organizations = await getCachedSpaces();
+export const SpacesListWrapper = () => {
+  const trpc = useTRPC();
 
-  if (!organizations.length) {
+  const { data } = useSuspenseQuery(trpc.spaces.list.queryOptions());
+
+  if (!data.length) {
     return (
       <section className="grid gap-8">
         <Alert variant="destructive">
@@ -34,5 +39,5 @@ export const SpacesListWrapper = async () => {
     );
   }
 
-  return <SpacesList organizations={organizations} />;
+  return <SpacesList organizations={data} />;
 };

@@ -7,6 +7,7 @@ import { passkey } from "better-auth/plugins/passkey";
 import { uniformIntDistribution, xoroshiro128plus } from "pure-rand";
 
 import { db } from "@stackk/db/client";
+import { teams } from "@stackk/db/schema";
 import { resend } from "@stackk/transactional";
 import { EmailOTPTemplate } from "@stackk/transactional/otp-email";
 
@@ -32,9 +33,9 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
     session: {
       cookieCache: {
         enabled: true,
-        maxAge: 60 * 60 * 24 * 30,
+        maxAge: 60 * 60 * 24 * 14,
       },
-      updateAge: 60 * 60 * 24 * 15,
+      updateAge: 60 * 1,
     },
     user: {
       additionalFields: {
@@ -82,11 +83,31 @@ export function initAuth(options: { baseUrl: string; productionUrl: string }) {
         teams: {
           enabled: true,
           allowRemovingAllTeams: false,
-          defaultTeam: {
-            enabled: true,
-          },
           maximumTeams() {
             return 20;
+          },
+        },
+        organizationCreation: {
+          afterCreate: async (data) => {
+            // Create default common teams
+            await db.insert(teams).values([
+              {
+                name: "UCI",
+                code: "uci",
+                organizationId: data.organization.id,
+              },
+
+              {
+                name: "Neonatal",
+                code: "neonatal",
+                organizationId: data.organization.id,
+              },
+              {
+                name: "Enfermeria",
+                code: "enfermeria",
+                organizationId: data.organization.id,
+              },
+            ]);
           },
         },
       }),

@@ -26,9 +26,9 @@ const productionUrl =
 
 export const auth = initAuth({ baseUrl, productionUrl });
 
-export const getSession = cache(async () => {
+export const getSession = async () => {
   return auth.api.getSession({ headers: await headers() });
-});
+};
 
 export const getActiveMember = async () => {
   return auth.api.getActiveMember({ headers: await headers() });

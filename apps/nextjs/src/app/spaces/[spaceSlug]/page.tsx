@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 
 import { getActiveMember, getSession } from "~/lib/auth/server";
+import { HydrateClient } from "~/lib/trpc/server";
 import { CalendarTest } from "../../../components/spaces/CalendarTest";
 
 export default async function SpacePage(props: {
@@ -12,18 +13,20 @@ export default async function SpacePage(props: {
   const session = await getSession();
 
   return (
-    <section>
-      <h1>Space: {params.spaceSlug}</h1>
+    <HydrateClient>
+      <section>
+        <h1>Space: {params.spaceSlug}</h1>
 
-      <p>Member: {JSON.stringify(member)}</p>
+        <p>Member: {JSON.stringify(member)}</p>
 
-      <p>Session: {JSON.stringify(session)}</p>
+        <p>Session: {JSON.stringify(session)}</p>
 
-      <h1 className="text-2xl">TODO: Main dashboard with metrics</h1>
+        <h1 className="text-2xl">TODO: Main dashboard with metrics</h1>
 
-      <Suspense>
-        <CalendarTest />
-      </Suspense>
-    </section>
+        <Suspense>
+          <CalendarTest />
+        </Suspense>
+      </section>
+    </HydrateClient>
   );
 }

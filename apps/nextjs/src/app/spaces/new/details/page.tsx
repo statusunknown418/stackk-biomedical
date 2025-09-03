@@ -1,13 +1,19 @@
-import { getSession } from "~/lib/auth/server";
+import Link from "next/link";
+
+import { Button } from "@stackk/ui/button";
+
+import { HydrateClient } from "~/lib/trpc/server";
 
 export default async function DetailsPage() {
-  const session = await getSession();
-
   return (
-    <section className="grid h-full place-items-center">
-      {JSON.stringify(session, null, 2)}
+    <HydrateClient>
+      <section className="grid h-full place-items-center">
+        <p>Testing for now</p>
 
-      <p>if the above doesn't work review the console/logic</p>
-    </section>
+        <Button>
+          <Link href="/spaces/new/invite">Continuar</Link>
+        </Button>
+      </section>
+    </HydrateClient>
   );
 }

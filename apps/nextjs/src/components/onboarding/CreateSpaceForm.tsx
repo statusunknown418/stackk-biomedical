@@ -78,10 +78,8 @@ export const CreateSpaceForm = ({ generatedId }: { generatedId: string }) => {
             });
           }
 
-          await authClient.organization.setActive({
-            organizationId: data.id,
-            organizationSlug: data.slug,
-          });
+          await authClient.organization.setActive({ organizationId: data.id });
+
           router.push(`/spaces/new/${NewSpaceSteps.details}`);
           return "Organización creada";
         },

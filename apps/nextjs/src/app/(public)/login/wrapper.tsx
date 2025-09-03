@@ -33,7 +33,6 @@ export const RedirectionWrapper = () => {
           }}
         />
         <Button
-          disabled
           className="gap-2"
           onClick={async () => {
             if (!email) {
@@ -67,7 +66,6 @@ export const RedirectionWrapper = () => {
 
       <Button
         variant="secondary"
-        disabled
         className="gap-2"
         onClick={async () => {
           await authClient.signIn.passkey({
@@ -92,7 +90,6 @@ export const RedirectionWrapper = () => {
           <Button
             variant="outline"
             className={cn("w-full gap-2")}
-            disabled
             onClick={async () => {
               await authClient.signIn.social(
                 {

@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { equipment, equipmentTypes } from "./inventory-management";
@@ -198,7 +198,7 @@ export const invitations = sqliteTable(
     role: text("role"),
     status: text("status").default("pending").notNull(),
     expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
-    teamId: text("team_id").references(() => teams.id, { onDelete: "set null" }),
+    teamId: text("team_id"),
     inviterId: text("inviter_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),

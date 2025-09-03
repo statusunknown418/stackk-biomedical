@@ -4,3 +4,4 @@
 
 export * from "./inventory";
 export * from "./fhir";
+export * from "./spaces";
