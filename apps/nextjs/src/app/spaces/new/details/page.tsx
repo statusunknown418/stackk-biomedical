@@ -4,7 +4,7 @@ import { Button } from "@stackk/ui/button";
 
 import { HydrateClient } from "~/lib/trpc/server";
 
-export default async function DetailsPage() {
+export default function DetailsPage() {
   return (
     <HydrateClient>
       <section className="grid h-full place-items-center">

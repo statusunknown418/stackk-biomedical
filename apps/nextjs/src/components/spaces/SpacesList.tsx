@@ -13,7 +13,6 @@ import { authClient } from "~/lib/auth/client";
 
 export const SpacesList = ({ organizations }: { organizations: Organization[] }) => {
   const router = useRouter();
-  const session = authClient.useSession();
 
   return (
     <ul className="grid gap-3">
@@ -26,7 +25,7 @@ export const SpacesList = ({ organizations }: { organizations: Organization[] })
             await authClient.organization.setActive({
               organizationId: organization.id,
               fetchOptions: {
-                onSuccess: ({ data }) => {
+                onSuccess: ({ data }: { data: Organization }) => {
                   router.push(`/spaces/${data.slug}`);
                 },
               },

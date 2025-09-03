@@ -38,8 +38,8 @@ export const TeamInvites = () => {
     resolver: zodResolver(InvitePeopleSchema),
   });
 
-  const onSubmit = form.handleSubmit((data) => {
-    authClient.organization.inviteMember({
+  const onSubmit = form.handleSubmit(async (data) => {
+    await authClient.organization.inviteMember({
       email: data.email,
       role: "member",
       fetchOptions: {
