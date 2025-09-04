@@ -140,7 +140,7 @@ export const teams = sqliteTable(
       .primaryKey()
       .$defaultFn(() => `team_${createId()}`),
     name: t.text().notNull(),
-    code: t.text().unique(),
+    code: t.text(),
     description: t.text(),
     location: t.text(),
     organizationId: t
